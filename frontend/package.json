@@ -1,6 +1,7 @@
 {
-	"name": "frontend",
-	"version": "0.1.0",
+	"name": "Banglore Food Bank Challenge",
+	"version": "1.0.0",
+	"description": "Code for Good 2022: Banglore food bank Challenge Winners",
 	"private": true,
 	"proxy": "http://localhost:3001/",
 	"dependencies": {

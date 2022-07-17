@@ -209,9 +209,7 @@ const ProductPage = ({ history, match }) => {
 											<Col>
 												<strong>Status: </strong>
 											</Col>
-											<Col>
-												{product.countInStock > 0 ? "In Stock" : "Out of Stock"}
-											</Col>
+											<Col>"Donation is required"</Col>
 										</Row>
 									</ListGroup.Item>
 									{product.countInStock > 0 && (

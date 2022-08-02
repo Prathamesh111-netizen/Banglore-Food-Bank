@@ -1,7 +1,9 @@
 # Code-for-Good-22-Banglore-Food-Bank-Challenge
 
 # cfg-team39
-A repository of all the code of the JPMC's Code For Good Hackathon made with team39
+JPMC Code for Good Winner team 39 : Past Glory 
+![image](https://user-images.githubusercontent.com/79742694/182311030-cfa0f10d-911f-4a61-a915-05b894e38474.png)
+
 
 ## ⚠️ The issue
 Hunger is not a natural disaster, it is a man made one to a large extent. 20+ lakhs of people die in India every year because of hunger. Hence, it is our duty to eradicate it. Bangalore Food Bank works in this direction. The problems faced by them are the lack of awareness and not easier ways to donate in a nutshell. So, we worked to create a solution towards this.

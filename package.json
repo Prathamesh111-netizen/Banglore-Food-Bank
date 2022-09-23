@@ -3,13 +3,14 @@
 	"version": "1.0.0",
 	"description": "Code for Good 2022: Banglore food bank Challenge Winners",
 	"main": "server.js",
+	"proxy": "http://localhost:2525",
 	"type": "module",
 	"engines": {
 		"node": "14.x"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node backend/server.js",
+		"start": "nodemon backend/server.js",
 		"server": "nodemon backend/server.js",
 		"client": "npm start --prefix frontend",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -18,15 +19,10 @@
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 	},
 	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Rajatm544/MERN-Ecommerce.git"
+		"type": "git"
 	},
-	"author": "Rajat M",
+	"author": "Prahtmaesh Pawar",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Rajatm544/MERN-Ecommerce/issues"
-	},
-	"homepage": "https://github.com/Rajatm544/MERN-Ecommerce#readme",
 	"dependencies": {
 		"aws-sdk": "^2.983.0",
 		"bcryptjs": "^2.4.3",

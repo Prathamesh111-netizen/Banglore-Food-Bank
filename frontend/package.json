@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Code for Good 2022: Banglore food bank Challenge Winners",
 	"private": true,
-	"proxy": "http://localhost:3001/",
+	"proxy": "http://localhost:2525/",
 	"dependencies": {
 		"@alan-ai/alan-sdk-web": "^1.8.34",
 		"@emotion/react": "^11.9.3",

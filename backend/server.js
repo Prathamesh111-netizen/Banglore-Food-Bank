@@ -38,6 +38,9 @@ app.use(express.json()); // middleware to use req.body
 app.use(cors()); // to avoid CORS errors
 app.use(compression()); // to use gzip
 
+app.get("/", (req, res) => {
+	res.json({ status: "ok" });
+});
 app.post("/", (req, res) => {
 	res.json({ status: "ok" });
 });

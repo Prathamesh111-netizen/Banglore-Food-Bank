@@ -107,7 +107,6 @@ const Header = () => {
 		window.location.href = "/";
 	};
 
-<<<<<<< Updated upstream
   // render different navbars for large and small screens without navbar toggle
   return (
     <header>
@@ -127,27 +126,6 @@ const Header = () => {
           setShow2(false);
         }}
       />
-=======
-	// render different navbars for large and small screens without navbar toggle
-	return (
-		<header>
-			{/* this section covers entire screen except the dropdown, to handle onclicks */}
-			<section
-				className="navbar-dropdown-cover"
-				style={{
-					display:
-						window.innerHeight > 430 && (show1 || show2) ? "block" : "none",
-					minWidth: "100%",
-					height: "100%",
-					zIndex: "100",
-					position: "absolute"
-				}}
-				onClick={() => {
-					setShow1(false);
-					setShow2(false);
-				}}
-			/>
->>>>>>> Stashed changes
 
       {/* conditionally render different navbars for the mobile sreens */}
       <Navbar
@@ -224,7 +202,6 @@ const Header = () => {
 							</Popup>
 						</LinkContainer> */}
 
-<<<<<<< Updated upstream
             {userInfo && userInfo.isAdmin && (
               <>
                 {/* display this only on mobile screens */}
@@ -323,105 +300,6 @@ const Header = () => {
                   className="nav-avatar d-none d-md-block"
                   alt={userInfo.name}
                 />
-=======
-						{userInfo && userInfo.isAdmin && (
-							<>
-								{/* display this only on mobile screens */}
-								<LinkContainer
-									className="d-block d-md-none"
-									to="/admin/userlist"
-								>
-									<Nav.Link>
-										<i className="fas fa-users" />
-									</Nav.Link>
-								</LinkContainer>
-								<LinkContainer
-									className="d-block d-md-none"
-									to="/admin/orderlist"
-								>
-									<Nav.Link>
-										<i className="fas fa-user-shield" />
-									</Nav.Link>
-								</LinkContainer>
-								<LinkContainer
-									className="d-block d-md-none"
-									to="/admin/productlist"
-								>
-									<Nav.Link>
-										<i className="fas fa-shopping-bag" />
-									</Nav.Link>
-								</LinkContainer>
-							</>
-						)}
-						<LinkContainer to="/cart">
-							<Nav.Link>
-								{/* indicate cart size */}
-								{count ? (
-									<div className="nav-cart-size">
-										<span
-											style={
-												count > 10
-													? { fontSize: "0.6em" }
-													: { fontSize: "0.7em" }
-											}
-										>
-											{count}
-										</span>
-									</div>
-								) : (
-									""
-								)}
-								<i className="fas fa-shopping-cart navbar-icons" />{" "}
-								{!(userInfo && userInfo.isAdmin) || window.innerWidth >= 430
-									? "Cart"
-									: ""}
-							</Nav.Link>
-						</LinkContainer>
-						{userInfo && userInfo.isAdmin && (
-							// show this only on md screens and above
-							<NavDropdown
-								className="d-none d-md-block"
-								title="Admin"
-								id="adminMenu"
-								show={show2}
-								onClick={handleDropdown2}
-							>
-								<LinkContainer to="/admin/userlist">
-									<NavDropdown.Item>Users</NavDropdown.Item>
-								</LinkContainer>
-								<LinkContainer to="/admin/productlist">
-									<NavDropdown.Item>Products</NavDropdown.Item>
-								</LinkContainer>
-								<LinkContainer to="/admin/orderlist">
-									<NavDropdown.Item>Orders</NavDropdown.Item>
-								</LinkContainer>
-							</NavDropdown>
-						)}
-						{userInfo && (
-							// show this only on mobile screens
-							<Nav.Link className="d-block d-md-none" onClick={handleLogout}>
-								<i className="fas fa-sign-out-alt navbar-icons" />{" "}
-								{!(userInfo && userInfo.isAdmin) && "Logout"}
-							</Nav.Link>
-						)}
-						{userInfo ? (
-							<div className="nav-avatar-container">
-								{/* show this container only on mobile screens */}
-								<LinkContainer to="/profile" className="d-block d-md-none">
-									<Nav.Link>
-										<img
-											src={userInfo.avatar}
-											className="nav-avatar"
-											alt={userInfo.name}
-										/>
-									</Nav.Link>
-								</LinkContainer>
-								<img
-									src="https://prathameshbangalorefoodbank.s3.ap-south-1.amazonaws.com/static/avatar.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARHY7XM6IE6D7WUNN%2F20220923%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20220923T050949Z&X-Amz-Expires=3600&X-Amz-Signature=05e49789e7230ad3b6d819ea4e28089be978097e88b95c63ec828ec0b4d5256b&X-Amz-SignedHeaders=host"
-									className="nav-avatar d-none d-md-block"
-									alt={userInfo.name}
-								/>
->>>>>>> Stashed changes
 
                 {/* show this dropdown only on large screens */}
                 <NavDropdown

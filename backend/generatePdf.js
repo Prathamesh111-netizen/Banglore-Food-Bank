@@ -40,15 +40,15 @@ const generatePDF = (name, email, course) => {
   const maxWidth = 140;
   const maxHeight = 70;
 
-  doc.image("assets/winners.png", doc.page.width / 2 - maxWidth / 2, 60, {
-    fit: [maxWidth, maxHeight],
-    align: "center"
-  });
+  // doc.image("assets/winners.png", doc.page.width / 2 - maxWidth / 2, 60, {
+  //   fit: [maxWidth, maxHeight],
+  //   align: "center"
+  // });
 
   jumpLine(doc, 5);
 
+  // .font("fonts/NotoSansJP-Light.otf")
   doc
-    .font("fonts/NotoSansJP-Light.otf")
     .fontSize(10)
     .fill("#021c27")
     .text("Super Course for Awesomes", {
@@ -58,8 +58,8 @@ const generatePDF = (name, email, course) => {
   jumpLine(doc, 2);
 
   // Content
+  // .font("fonts/NotoSansJP-Regular.otf")
   doc
-    .font("fonts/NotoSansJP-Regular.otf")
     .fontSize(16)
     .fill("#021c27")
     .text("CERTIFICATE OF COMPLETION", {
@@ -68,8 +68,8 @@ const generatePDF = (name, email, course) => {
 
   jumpLine(doc, 1);
 
+  // .font("fonts/NotoSansJP-Light.otf")
   doc
-    .font("fonts/NotoSansJP-Light.otf")
     .fontSize(10)
     .fill("#021c27")
     .text("This is to certify that ", {
@@ -78,8 +78,8 @@ const generatePDF = (name, email, course) => {
 
   jumpLine(doc, 2);
 
+  // .font("fonts/NotoSansJP-Bold.otf")
   doc
-    .font("fonts/NotoSansJP-Bold.otf")
     .fontSize(24)
     .fill("#021c27")
     .text(`${name}`, {
@@ -101,8 +101,8 @@ const generatePDF = (name, email, course) => {
     10: "November",
     11: "December"
   };
+  // .font("fonts/NotoSansJP-Light.otf")
   doc
-    .font("fonts/NotoSansJP-Light.otf")
     .fontSize(10)
     .fill("#021c27")
     .text(
@@ -134,20 +134,20 @@ const generatePDF = (name, email, course) => {
     .moveTo(startLine1, signatureHeight)
     .lineTo(endLine1, signatureHeight)
     .stroke();
-  doc.image("assets/ach.jpg", startLine1 + 405, 50, {
-    // fit: [100, 100],
-    // align: "left",
-    height: 250,
-    width: 200
-  });
-  doc.image("assets/sergio1.png", startLine1 + 20, 370, {
-    fit: [maxWidth, maxHeight],
-    align: "left"
-  });
-  doc.image("assets/raquel.png", startLine1 + 315, 370, {
-    fit: [maxWidth, maxHeight],
-    align: "left"
-  });
+  // doc.image("assets/ach.jpg", startLine1 + 405, 50, {
+  //   // fit: [100, 100],
+  //   // align: "left",
+  //   height: 250,
+  //   width: 200
+  // });
+  // doc.image("assets/sergio1.png", startLine1 + 20, 370, {
+  //   fit: [maxWidth, maxHeight],
+  //   align: "left"
+  // });
+  // doc.image("assets/raquel.png", startLine1 + 315, 370, {
+  //   fit: [maxWidth, maxHeight],
+  //   align: "left"
+  // });
 
   const startLine2 = endLine1;
   const endLine2 = startLine2 + lineSize;
@@ -163,11 +163,11 @@ const generatePDF = (name, email, course) => {
     .lineTo(endLine3, signatureHeight)
     .stroke();
 
+    // .font("fonts/NotoSansJP-Bold.otf")s
   doc
-    .font("fonts/NotoSansJP-Bold.otf")
     .fontSize(10)
     .fill("#021c27")
-    .text("Sergio Marquina", startLine1, signatureHeight + 10, {
+    .text("Harsh Patil", startLine1, signatureHeight + 10, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -175,11 +175,11 @@ const generatePDF = (name, email, course) => {
       align: "center"
     });
 
+    // .font("fonts/NotoSansJP-Light.otf")
   doc
-    .font("fonts/NotoSansJP-Light.otf")
     .fontSize(10)
     .fill("#021c27")
-    .text("Founder, Full Stack Simplified", startLine1, signatureHeight + 25, {
+    .text("Founder", startLine1, signatureHeight + 25, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -211,11 +211,11 @@ const generatePDF = (name, email, course) => {
   //     align: "center",
   //   });
 
+  // .font("fonts/NotoSansJP-Bold.otf")
   doc
-    .font("fonts/NotoSansJP-Bold.otf")
     .fontSize(10)
     .fill("#021c27")
-    .text("Raquel Murillo", startLine3, signatureHeight + 10, {
+    .text("Prathamesh Pawar", startLine3, signatureHeight + 10, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -223,8 +223,8 @@ const generatePDF = (name, email, course) => {
       align: "center"
     });
 
+    // .font("fonts/NotoSansJP-Light.otf")
   doc
-    .font("fonts/NotoSansJP-Light.otf")
     .fontSize(10)
     .fill("#021c27")
     .text("CEO, Full Stack Simplified", startLine3, signatureHeight + 25, {

@@ -62,14 +62,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @access PRIVATE/ADMIN
 const createProduct = asyncHandler(async (req, res) => {
   // create a dummy product which can be edited later
-  const product = new Product({
-    name: "Sample",
-    category: "Sample Category",
-    price: 0,
-    user: req.user._id,
-    image: "/images/alexa.jpg",
-    description: "very nice product"
-  });
+  const reqBody = req.body;
+  const product = new Product(reqBody);
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });

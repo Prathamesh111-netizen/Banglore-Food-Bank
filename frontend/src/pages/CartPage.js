@@ -145,7 +145,7 @@ const CartPage = ({ match, location, history }) => {
 					createOrder({
 						orderItems: cartItems,
 						shippingAddress: "Abc",
-						paymentMethod: "abc",
+						paymentMethod: "RazorPay",
 						itemsPrice: data.amount / 100,
 						totalPrice: data.amount / 100,
 						shippingPrice: data.amount / 100,

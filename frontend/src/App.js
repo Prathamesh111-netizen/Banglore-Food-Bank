@@ -36,6 +36,7 @@ import CreateCampaign from "./components/createCampign/createCampaign";
 // import CampaignPage from "./components/campaign";
 // for showing the 'new update available' banner and to register the service worker
 import ServiceWorkerWrapper from "./ServiceWorkerWrapper";
+import aboutUs from "./pages/aboutus";
 
 const App = () => {
 	return (
@@ -66,6 +67,7 @@ const App = () => {
 							component={PasswordResetPage}
 						/>
 						<Route path="/profile" component={ProfilePage} />
+						<Route path="/aboutUs" component={aboutUs} />
 						<Route path="/product/:id" component={ProductPage} />
 						<Route path="/cart/:id?" component={CartPage} />
 						<Route path="/user/confirm/:token" component={ConfirmPage} exact />

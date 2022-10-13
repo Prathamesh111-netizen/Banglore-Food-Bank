@@ -1,5 +1,3 @@
-const getObject = require("./getObject");
+import getObject from "./getObject.js";
 
-module.exports = {
-	getObject
-};
+export { getObject };

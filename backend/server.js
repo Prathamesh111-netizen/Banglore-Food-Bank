@@ -16,6 +16,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import awsRouters from "./routes/aws.js";
 // import campaignRoutes from "./routes/campaignRoutes.js";
 import generatePDF from "./generatePdf.js";
 
@@ -105,6 +106,7 @@ app.post("/razorpay", async (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/aws", awsRouters);
 // app.use("/api/campaign", campaignRoutes);
 // app.use('/api/auth', authRoutes);
 // app.use("/api/config", configRoutes);

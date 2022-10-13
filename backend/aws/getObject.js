@@ -1,4 +1,4 @@
-const AWS = require("aws-sdk");
+import AWS from "aws-sdk";
 
 const getImageUrl = (Key) => {
 	AWS.config.update({
@@ -19,4 +19,4 @@ const getImageUrl = (Key) => {
 	});
 };
 
-module.exports = getImageUrl;
+export default getImageUrl;

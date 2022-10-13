@@ -19,92 +19,95 @@ import QrCode2Icon from "@mui/icons-material/QrCode2";
 import ShareIcon from "@mui/icons-material/Share";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
+
 function qrcard() {
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        {/* <CardMedia
+	return (
+		<Card sx={{ maxWidth: 345 }}>
+			<CardActionArea>
+				{/* <CardMedia
           component="img"
           height="140"
           image="/static/images/cards/contemplative-reptile.jpg"
           alt="green iguana"
         /> */}
-        <CardContent>
-          <QRCode value={window.location.href} />
-          {/* <Typography gutterBottom variant="h5" component="div">
+				<CardContent>
+					<QRCode value={window.location.href} />
+					{/* <Typography gutterBottom variant="h5" component="div">
 						Lizard
 					</Typography> */}
-          <Typography variant="body2" color="text.secondary"></Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  );
+					<Typography variant="body2" color="text.secondary"></Typography>
+				</CardContent>
+			</CardActionArea>
+		</Card>
+	);
 }
 
 const ControlledPopup = () => {
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
-  return (
-    <div>
-      <QrCode2Icon
-        onClick={() => setOpen((o) => !o)}
-        sx={{ backgroundColor: "#fff", cursor: "pointer" }}
-      />
-      {/* <button type="button" className="button">
+	const [open, setOpen] = useState(false);
+	const closeModal = () => setOpen(false);
+	return (
+		<div>
+			<QrCode2Icon
+				onClick={() => setOpen((o) => !o)}
+				sx={{ backgroundColor: "#fff", cursor: "pointer" }}
+			/>
+			{/* <button type="button" className="button">
 				QR
 			</button> */}
-      <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-        <QRCode value={window.location.href} />
-        Share now! via:
-        <WhatsAppIcon sx={{ color: "green", cursor: "pointer", m: 1 }} />
-        <AttachEmailIcon sx={{ color: "red", cursor: "pointer", m: 1 }} />
-        <ShareIcon sx={{ cursor: "pointer" }} />
-      </Popup>
-    </div>
-  );
+			<Popup open={open} closeOnDocumentClick onClose={closeModal}>
+				<QRCode value={window.location.href} />
+				Share now! via:
+				<WhatsAppIcon sx={{ color: "green", cursor: "pointer", m: 1 }} />
+				<AttachEmailIcon sx={{ color: "red", cursor: "pointer", m: 1 }} />
+				<ShareIcon sx={{ cursor: "pointer" }} />
+			</Popup>
+		</div>
+	);
 };
+
 const Header = () => {
-  const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const cart = useSelector((state) => state.cart);
-  const { userInfo } = userLogin;
-  const { cartItems } = cart;
+	const dispatch = useDispatch();
+	const userLogin = useSelector((state) => state.userLogin);
+	const cart = useSelector((state) => state.cart);
+	const { userInfo } = userLogin;
+	const { cartItems } = cart;
 
-  const [show1, setShow1] = useState(false); // to close dropdown when clicking anywhere outside
-  const [show2, setShow2] = useState(false); // to close dropdown when clicking anywhere outside
-  const [count, setCount] = useState(0);
+	const [show1, setShow1] = useState(false); // to close dropdown when clicking anywhere outside
+	const [show2, setShow2] = useState(false); // to close dropdown when clicking anywhere outside
+	const [count, setCount] = useState(0);
 
-  // update count when new cart changes
-  useEffect(() => {
-    setCount(cartItems.reduce((acc, item) => acc + item.qty, 0));
-  }, [cartItems]);
+	// update count when new cart changes
+	useEffect(() => {
+		setCount(cartItems.reduce((acc, item) => acc + item.qty, 0));
+	}, [cartItems]);
 
-  // close the second dropdown when it is open and user clicks anywhere else
-  const handleDropdown2 = (e) => {
-    if (show2) {
-      setShow2(false);
-    } else {
-      setShow2(true);
-      setShow1(false);
-    }
-  };
+	// close the second dropdown when it is open and user clicks anywhere else
+	const handleDropdown2 = (e) => {
+		if (show2) {
+			setShow2(false);
+		} else {
+			setShow2(true);
+			setShow1(false);
+		}
+	};
 
-  // close the first dropdown when it is open and user clicks anywhere else
-  const handleDropdown1 = (e) => {
-    if (show1) {
-      setShow1(false);
-    } else {
-      setShow1(true);
-      setShow2(false);
-    }
-  };
+	// close the first dropdown when it is open and user clicks anywhere else
+	const handleDropdown1 = (e) => {
+		if (show1) {
+			setShow1(false);
+		} else {
+			setShow1(true);
+			setShow2(false);
+		}
+	};
 
-  // dispatch action to logout user
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    window.location.href = "/";
-  };
+	// dispatch action to logout user
+	const handleLogout = () => {
+		dispatch(logoutUser());
+		window.location.href = "/";
+	};
 
+<<<<<<< Updated upstream
   // render different navbars for large and small screens without navbar toggle
   return (
     <header>
@@ -124,6 +127,27 @@ const Header = () => {
           setShow2(false);
         }}
       />
+=======
+	// render different navbars for large and small screens without navbar toggle
+	return (
+		<header>
+			{/* this section covers entire screen except the dropdown, to handle onclicks */}
+			<section
+				className="navbar-dropdown-cover"
+				style={{
+					display:
+						window.innerHeight > 430 && (show1 || show2) ? "block" : "none",
+					minWidth: "100%",
+					height: "100%",
+					zIndex: "100",
+					position: "absolute"
+				}}
+				onClick={() => {
+					setShow1(false);
+					setShow2(false);
+				}}
+			/>
+>>>>>>> Stashed changes
 
       {/* conditionally render different navbars for the mobile sreens */}
       <Navbar
@@ -200,6 +224,7 @@ const Header = () => {
 							</Popup>
 						</LinkContainer> */}
 
+<<<<<<< Updated upstream
             {userInfo && userInfo.isAdmin && (
               <>
                 {/* display this only on mobile screens */}
@@ -298,6 +323,105 @@ const Header = () => {
                   className="nav-avatar d-none d-md-block"
                   alt={userInfo.name}
                 />
+=======
+						{userInfo && userInfo.isAdmin && (
+							<>
+								{/* display this only on mobile screens */}
+								<LinkContainer
+									className="d-block d-md-none"
+									to="/admin/userlist"
+								>
+									<Nav.Link>
+										<i className="fas fa-users" />
+									</Nav.Link>
+								</LinkContainer>
+								<LinkContainer
+									className="d-block d-md-none"
+									to="/admin/orderlist"
+								>
+									<Nav.Link>
+										<i className="fas fa-user-shield" />
+									</Nav.Link>
+								</LinkContainer>
+								<LinkContainer
+									className="d-block d-md-none"
+									to="/admin/productlist"
+								>
+									<Nav.Link>
+										<i className="fas fa-shopping-bag" />
+									</Nav.Link>
+								</LinkContainer>
+							</>
+						)}
+						<LinkContainer to="/cart">
+							<Nav.Link>
+								{/* indicate cart size */}
+								{count ? (
+									<div className="nav-cart-size">
+										<span
+											style={
+												count > 10
+													? { fontSize: "0.6em" }
+													: { fontSize: "0.7em" }
+											}
+										>
+											{count}
+										</span>
+									</div>
+								) : (
+									""
+								)}
+								<i className="fas fa-shopping-cart navbar-icons" />{" "}
+								{!(userInfo && userInfo.isAdmin) || window.innerWidth >= 430
+									? "Cart"
+									: ""}
+							</Nav.Link>
+						</LinkContainer>
+						{userInfo && userInfo.isAdmin && (
+							// show this only on md screens and above
+							<NavDropdown
+								className="d-none d-md-block"
+								title="Admin"
+								id="adminMenu"
+								show={show2}
+								onClick={handleDropdown2}
+							>
+								<LinkContainer to="/admin/userlist">
+									<NavDropdown.Item>Users</NavDropdown.Item>
+								</LinkContainer>
+								<LinkContainer to="/admin/productlist">
+									<NavDropdown.Item>Products</NavDropdown.Item>
+								</LinkContainer>
+								<LinkContainer to="/admin/orderlist">
+									<NavDropdown.Item>Orders</NavDropdown.Item>
+								</LinkContainer>
+							</NavDropdown>
+						)}
+						{userInfo && (
+							// show this only on mobile screens
+							<Nav.Link className="d-block d-md-none" onClick={handleLogout}>
+								<i className="fas fa-sign-out-alt navbar-icons" />{" "}
+								{!(userInfo && userInfo.isAdmin) && "Logout"}
+							</Nav.Link>
+						)}
+						{userInfo ? (
+							<div className="nav-avatar-container">
+								{/* show this container only on mobile screens */}
+								<LinkContainer to="/profile" className="d-block d-md-none">
+									<Nav.Link>
+										<img
+											src={userInfo.avatar}
+											className="nav-avatar"
+											alt={userInfo.name}
+										/>
+									</Nav.Link>
+								</LinkContainer>
+								<img
+									src="https://prathameshbangalorefoodbank.s3.ap-south-1.amazonaws.com/static/avatar.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARHY7XM6IE6D7WUNN%2F20220923%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20220923T050949Z&X-Amz-Expires=3600&X-Amz-Signature=05e49789e7230ad3b6d819ea4e28089be978097e88b95c63ec828ec0b4d5256b&X-Amz-SignedHeaders=host"
+									className="nav-avatar d-none d-md-block"
+									alt={userInfo.name}
+								/>
+>>>>>>> Stashed changes
 
                 {/* show this dropdown only on large screens */}
                 <NavDropdown

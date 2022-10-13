@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
 const userSchema = mongoose.Schema(
 	{
 		name: {
@@ -32,6 +31,10 @@ const userSchema = mongoose.Schema(
 			type: Boolean,
 			required: true,
 			default: false
+		},
+		profilephoto: {
+			type: String,
+			default: "#"
 		}
 
 		// one of the following 4 will be filled, or the password field is available
@@ -67,6 +70,7 @@ userSchema.pre("save", async function (next) {
 	const salt = bcrypt.genSaltSync(10);
 	const hash = bcrypt.hashSync(user.password, salt);
 	user.password = hash;
+
 	next();
 });
 

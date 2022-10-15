@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import Paginate from "../components/Paginate";
 import { Row, Col, Button } from "react-bootstrap";
-import ProductCarousel from "../components/ProductCarousel";
 import Meta from "../components/Meta";
 import { listProducts } from "../actions/productActions";
 import { refreshLogin, getUserDetails } from "../actions/userActions";
@@ -13,7 +12,6 @@ import SearchBox from "../components/SearchBox";
 import ProductSkeleton from "../components/ProductSkeleton";
 import MultiCarouselPage from "../components/Multi";
 
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const HomePage = ({ match, history }) => {
@@ -83,6 +81,12 @@ const HomePage = ({ match, history }) => {
 		
 			<Meta />
 
+			<h1>Upload Image</h1>
+			<form action="/uploadphoto" enctype="multipart/form-data" method="POST">
+				<input type="file" name="myImage" accept="image/*" />
+				<input type="submit" value="Upload Photo" />
+			</form>
+			
 			{/* display carousel only on larger screens */}
 			{!keyword ? (
 				window.innerWidth > 430 && <MultiCarouselPage />
@@ -91,6 +95,7 @@ const HomePage = ({ match, history }) => {
 					Go Back
 				</Link>
 			)}
+			
 			{/* display this search bar on home page on mobile screens */}
 			<div className="d-block d-md-none">
 				<SearchBox history={history} />

@@ -72,6 +72,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.isConfirmed = req.body.email === user.email;
     user.email = req.body.email || user.email;
     user.isAdmin = req.body.isAdmin;
+    
     const updatedUser = await user.save();
     if (updatedUser) {
       res.json({
@@ -118,6 +119,7 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       name: user.name,
       isAdmin: user.isAdmin,
+      profilephoto : user.profilephoto,
       isConfirmed: user.isConfirmed,
       avatar: user.avatar,
       accessToken,

@@ -10,11 +10,10 @@ const connectDB = () => {
 		})
 		.then((res) =>
 			console.log(
-				`MongoDB Connected: ${res.connection.host}`.cyan.underline.bold
-			)
+				`MongoDB Connected: ${res.connection.host}`)
 		)
 		.catch((err) => {
-			console.error(`Error: ${err.message}`.red.underline.bold);
+			console.error(`Error: ${err.message}`);
 			process.exit(1);
 		});
 };

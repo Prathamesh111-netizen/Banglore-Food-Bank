@@ -3,67 +3,75 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logoutUser } from "../actions/userActions";
-import { Route } from "react-router-dom";
-import SearchBox from "./SearchBox";
 import "../styles/header.css";
 import { QRCode } from "react-qrcode-logo";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import QrCode2Icon from "@mui/icons-material/QrCode2";
-import ShareIcon from "@mui/icons-material/Share";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 
-function qrcard() {
-	return (
-		<Card sx={{ maxWidth: 345 }}>
-			<CardActionArea>
-				{/* <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        /> */}
-				<CardContent>
-					<QRCode value={window.location.href} />
-					{/* <Typography gutterBottom variant="h5" component="div">
-						Lizard
-					</Typography> */}
-					<Typography variant="body2" color="text.secondary"></Typography>
-				</CardContent>
-			</CardActionArea>
-		</Card>
-	);
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import IconButton from '@mui/material/IconButton';
+import EmailIcon from '@mui/icons-material/Email';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import ShareIcon from '@mui/icons-material/Share';
+import InfoIcon from '@mui/icons-material/Info';
+import QrCode2Icon from "@mui/icons-material/QrCode2";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+function AlertDialogSlide() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+       <IconButton  aria-label="upload picture" component="label" onClick={handleClickOpen}>
+            {/* <input hidden accept="image/*" type="file" /> */}
+            <QrCode2Icon sx={{ color: "white", cursor: "pointer"}}/>
+        </IconButton>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Share about Our work"}</DialogTitle>
+        <DialogContent>
+          <QRCode value={window.location.href} />
+        </DialogContent>
+        <DialogActions>
+          <IconButton color="primary" aria-label="upload picture" component="label">
+            <input hidden accept="image/*" type="file" />
+            <EmailIcon sx={{ color: "red", cursor: "pointer"}}/>
+          </IconButton>
+          <IconButton color="primary" aria-label="upload picture" component="label">
+            <input hidden accept="image/*" type="file" />
+            <WhatsAppIcon sx={{ color: "green", cursor: "pointer" }}/>
+          </IconButton>
+          <IconButton color="primary" aria-label="upload picture" component="label">
+            <input hidden accept="image/*" type="file" />
+            <ShareIcon sx={{ cursor: "pointer" }}/>
+          </IconButton>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 }
 
-const ControlledPopup = () => {
-	const [open, setOpen] = useState(false);
-	const closeModal = () => setOpen(false);
-	return (
-		<div>
-			<QrCode2Icon
-				onClick={() => setOpen((o) => !o)}
-				sx={{ backgroundColor: "#fff", cursor: "pointer" }}
-			/>
-			{/* <button type="button" className="button">
-				QR
-			</button> */}
-			<Popup open={open} closeOnDocumentClick onClose={closeModal}>
-				<QRCode value={window.location.href} />
-				Share now! via:
-				<WhatsAppIcon sx={{ color: "green", cursor: "pointer", m: 1 }} />
-				<AttachEmailIcon sx={{ color: "red", cursor: "pointer", m: 1 }} />
-				<ShareIcon sx={{ cursor: "pointer" }} />
-			</Popup>
-		</div>
-	);
-};
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -131,36 +139,20 @@ const Header = () => {
       <Navbar
         bg="primary"
         variant="dark"
-        // expand="lg"
-        /*sx={{
-				color: "orange",
-				backgroundColor: "orange",
-				borderColor: "#EB5310"
-				}}*/
       >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              {/* <img
-								src="/images/logo.jpeg"
+              <img
+								src="/images/image_low.png"
 								className="nav-logo"
 								alt="logo"
 								width="2rem"
-							/> */}
+							/>
               Bangalore Food Bank
             </Navbar.Brand>
             </LinkContainer>
-            <LinkContainer to="/aboutUs">
-            <Navbar.Brand>
-              {/* <img
-								src="/images/logo.jpeg"
-								className="nav-logo"
-								alt="logo"
-								width="2rem"
-							/> */}
-              About Us
-            </Navbar.Brand>
-          </LinkContainer>
+           
 
           {/* history is available only inside Route, so this is used */}
           {/* display searchbar inside navbar in large screens only */}
@@ -184,23 +176,20 @@ const Header = () => {
                   }
             }
           >
+            <LinkContainer to="/aboutUs" variant="primary">
+                  <Nav.Link>
+                  <i class="fa fa-info-circle" aria-hidden="true" /> About
+                  </Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/campaigns" variant="primary">
-              <ControlledPopup />
+              <AlertDialogSlide />
             </LinkContainer>
             <LinkContainer to="/campaigns" variant="primary">
               <Nav.Link>
-                <a href="/campaigns" style={{ textDecoration: "none" }}>
                   <i className="fa fa-university navbar-icons" /> Campaign
-                </a>
               </Nav.Link>
             </LinkContainer>
-            {/* <LinkContainer className="d-block d-md-none" to="/admin/userlist">
-							<Popup trigger={<button> QR</button>} position="right center">
-								<div>
-									<QRCode value={window.location.href} />
-								</div>
-							</Popup>
-						</LinkContainer> */}
+            
 
             {userInfo && userInfo.isAdmin && (
               <>
@@ -231,7 +220,7 @@ const Header = () => {
                 </LinkContainer>
               </>
             )}
-            <LinkContainer to="/cart">
+            {userInfo && (<LinkContainer to="/cart">
               <Nav.Link>
                 {/* indicate cart size */}
                 {count ? (
@@ -254,7 +243,7 @@ const Header = () => {
                   ? "Cart"
                   : ""}
               </Nav.Link>
-            </LinkContainer>
+            </LinkContainer>)}
             {userInfo && userInfo.isAdmin && (
               // show this only on md screens and above
               <NavDropdown
@@ -285,7 +274,7 @@ const Header = () => {
             {userInfo ? (
               <div className="nav-avatar-container">
                 {/* show this container only on mobile screens */}
-                <LinkContainer to="/profile" className="d-block d-md-none">
+                {/* <LinkContainer to="/profile" className="d-block d-md-none">
                   <Nav.Link>
                     <img
                       // src={userInfo.avatar} 
@@ -294,9 +283,9 @@ const Header = () => {
                       alt={userInfo.name}
                     />
                   </Nav.Link>
-                </LinkContainer>
+                </LinkContainer> */}
                 <img
-                  src="https://s.gravatar.com/avatar/684e3da501bf8ec4443a322ba1d1c450?s=200&r=PG&d=identicon"
+                  src={userInfo.profilephoto}
                   className="nav-avatar d-none d-md-block"
                   alt={userInfo.name}
                 />
@@ -324,8 +313,12 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
             )}
+            
           </Nav>
+
         </Container>
+             
+
       </Navbar>
     </header>
   );

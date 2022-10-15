@@ -4,7 +4,10 @@ import "../styles/footer.css";
 
 const Footer = () => {
 	return (
-		<Container>
+		<Container sx={{position: "fixed",
+  left: 0,
+  bottom: 0,
+  width: "100%"}}>
 			<footer className="footer-container">
 				<div className="footer-icons">
 					<a

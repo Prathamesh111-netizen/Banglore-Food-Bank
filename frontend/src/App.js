@@ -3,7 +3,6 @@ import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
-	Redirect
 } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
@@ -29,12 +28,8 @@ import OrderListPage from "./pages/OrderListPage";
 import ErrorPage from "./pages/ErrorPage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import Create from "./components/adminConsole/create";
 import Allcampaigns from "./components/allcampaigns";
 import CreateCampaign from "./components/createCampign/createCampaign";
-// import CampaignComponent from "./components/homeCompaignComponent";
-// import CampaignPage from "./components/campaign";
-// for showing the 'new update available' banner and to register the service worker
 import ServiceWorkerWrapper from "./ServiceWorkerWrapper";
 import aboutUs from "./pages/aboutus";
 

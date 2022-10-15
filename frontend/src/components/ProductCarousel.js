@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Carousel, CarouselItem, Image } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 import Message from './Message';
 import { getTopRatedProducts } from '../actions/productActions';
 import '../styles/product-carousel.css';
@@ -38,7 +39,7 @@ const ProductCarousel = () => {
 								<Image
 									src={product.image}
 									alt={product.name}
-									fluid
+									// fluid
 								/>
 								<Carousel.Caption className='carousel-caption'>
 									{product.name} (
@@ -49,6 +50,16 @@ const ProductCarousel = () => {
 									})}
 									)
 								</Carousel.Caption>
+								{/* <Card style={{ width: '18rem' }}>
+								<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+								<Card.Body>
+									<Card.Title>Card Title</Card.Title>
+									<Card.Text>
+									Some quick example text to build on the card title and make up the
+									bulk of the card's content.
+									</Card.Text>
+									</Card.Body>
+								</Card> */}
 							</Link>
 						</CarouselItem>
 					))}

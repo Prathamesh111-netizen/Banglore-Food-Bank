@@ -21,10 +21,11 @@ export default class PauseOnHover extends Component {
 			<div style={{ textAlign: "center", textdecoration: "none" }}>
 				<a
 					href="#products"
-					// style="text-decoration: none;"
+					style={{ textdecoration: "none" }}
 				>
 					<button class="button-18">DONATE NOW</button>
 				</a>
+
 
 				<Slider {...settings}>
 					<div>

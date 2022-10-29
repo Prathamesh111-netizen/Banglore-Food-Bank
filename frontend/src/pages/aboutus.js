@@ -55,7 +55,7 @@ function DividerStack() {
            <CardMedia
               component="img"
               sx={{ height: 200 }}
-              image="https://media-exp1.licdn.com/dms/image/C5603AQE4E9ooJ1ICSA/profile-displayphoto-shrink_800_800/0/1638622172816?e=1671062400&v=beta&t=N5IAnA2_vvAPliIDfMHlqPFpjoR6gqcGmUATzwlmVn8"
+              image="/yash.jpg"
               alt="Live from space album cover"
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>

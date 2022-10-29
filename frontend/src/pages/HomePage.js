@@ -81,11 +81,11 @@ const HomePage = ({ match, history }) => {
 		
 			<Meta />
 
-			<h1>Upload Image</h1>
+			{/* <h1>Upload Image</h1>
 			<form action="/uploadphoto" enctype="multipart/form-data" method="POST">
 				<input type="file" name="myImage" accept="image/*" />
 				<input type="submit" value="Upload Photo" />
-			</form>
+			</form> */}
 			
 			{/* display carousel only on larger screens */}
 			{!keyword ? (

@@ -17,8 +17,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import generatePDF from "./generatePdf.js";
-import multer from "multer"
-import imageModel from "./models/ImageSchema.js"
+import Item from "./models/itemModel.js";
 
 dotenv.config();
 const app = express();
@@ -124,48 +123,29 @@ app.post("/getCertificate", async (req, res) => {
 	}
 });
 
-// SET STORAGE
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
-    }
-  })
- 
-var upload = multer({ storage: storage })
- 
-app.post("/uploadphoto",upload.single('myImage'),(req,res)=>{
-    var img = fs.readFileSync(req.file.path);
-    var encode_img = img.toString('base64');
-    var final_img = {
-        contentType:req.file.mimetype,
-        data :Buffer.from(encode_img,'base64')
-    };
-    imageModel.create({img : final_img}, function(err,result){
-        if(err){
-            console.log(err);
-        }else{
-            console.log(result.img.Buffer);
-            console.log("Saved To database");
-            res.contentType(final_img.contentType);
-            res.send(final_img.image);
-        }
-    })
-})
-app.get("/image/:id", async (req, res) => {
-	const { id } = req.params;
-	const result = await imageModel.findById(id)
-	console.log(result.img)
-	let imgData = new Blob(result.img.data, { type: 'application/octet-binary' });
-	let link = URL.createObjectURL(imgData);
-
-	let img = new Image();
-	img.onload = () => URL.revokeObjectURL(link);
-	img.src = link;
-	res.send(imgData);
-});
+app.get('/image',
+	async (req, res) => {
+		// const { imageId } = req.body;
+		console.log("reached server")
+		const Image = await Item.findById("6363cf139477fe425057e4b8");
+		try {
+			res.status(201).json(Image);
+		} catch (error) {
+			console.log(error)
+		}
+	}
+)
+app.post('/image',
+	async (req, res) => {
+		const { image } = req.body;
+		const item = new Item(image);
+		try {
+			await item.save();
+			res.status(201).json(item);
+		} catch (error) {
+		}
+	}
+)
 
 const __dirname = path.resolve();
 

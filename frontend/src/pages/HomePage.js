@@ -11,6 +11,9 @@ import Message from "../components/Message";
 import SearchBox from "../components/SearchBox";
 import ProductSkeleton from "../components/ProductSkeleton";
 import MultiCarouselPage from "../components/Multi";
+import axios from 'axios';
+import FileBase64 from 'react-file-base64';
+
 
 import "reactjs-popup/dist/index.css";
 
@@ -21,6 +24,10 @@ const HomePage = ({ match, history }) => {
 	const [products, setProducts] = useState(null);
 	const [productAvailable, setProductAvailable] = useState(false);
 	const dispatch = useDispatch();
+
+
+
+
 
 	// get the products list, userinfo and user details form the redix store
 	const productList = useSelector((state) => state.productList);
@@ -76,9 +83,29 @@ const HomePage = ({ match, history }) => {
 		);
 	}, []);
 
+	const url = "http://localhost:2525/image";
+
+	const createItem = (item) => axios.post(url, item);
+	const getItem = (item) => axios.get(url);
+	const [image, setImage] = useState('');
+
+	const onSubmitHandler = async (e) => {
+		e.preventDefault();
+		await createItem({ image });
+	}
+
+	const [renderedImage, setRenderedImage] = useState('');
+	const ImagePhoto = async (e) => {
+		e.preventDefault();
+		const res = await getItem();
+		console.log(res.data);
+		if ('data' in res)
+			setRenderedImage(res.data.image);
+	}
+
 	return (
 		<>
-		
+
 			<Meta />
 
 			{/* <h1>Upload Image</h1>
@@ -86,7 +113,28 @@ const HomePage = ({ match, history }) => {
 				<input type="file" name="myImage" accept="image/*" />
 				<input type="submit" value="Upload Photo" />
 			</form> */}
-			
+			<form action="" onSubmit={ImagePhoto}>
+				<div className="right-align">
+					<button className="btn">submit</button>
+				</div>
+			</form>
+			<img src={renderedImage} alt="FUU" />
+
+			<form action="" onSubmit={onSubmitHandler}>
+				<input type="text" className="input-field"
+					onChange={e => setImage({ ...image })}
+				/>
+				<FileBase64
+					type="file"
+					multiple={false}
+					onDone={({ base64 }) => setImage({ image: base64 })}
+				/>
+				<div className="right-align">
+					<button className="btn">submit</button>
+				</div>
+			</form>
+
+
 			{/* display carousel only on larger screens */}
 			{!keyword ? (
 				window.innerWidth > 430 && <MultiCarouselPage />
@@ -95,7 +143,7 @@ const HomePage = ({ match, history }) => {
 					Go Back
 				</Link>
 			)}
-			
+
 			{/* display this search bar on home page on mobile screens */}
 			<div className="d-block d-md-none">
 				<SearchBox history={history} />
@@ -118,23 +166,23 @@ const HomePage = ({ match, history }) => {
 					<Row>
 						{products.length
 							? products.map((product) => {
-									return (
-										<Col sm={12} md={6} lg={4} xl={3} key={product._id}>
-											<Product product={product} />
-										</Col>
-									);
-							  })
-							: keyword &&
-							  !productAvailable && (
-									//   show this only if user has searched for some item and it is not available
-									<Col className="text-center">
-										<div>
-											<i className="far fa-frown" /> No items found for this
-											search query
-										</div>
-										Go Back to the <Link to="/">Home Page</Link>
+								return (
+									<Col sm={12} md={6} lg={4} xl={3} key={product._id}>
+										<Product product={product} />
 									</Col>
-							  )}
+								);
+							})
+							: keyword &&
+							!productAvailable && (
+								//   show this only if user has searched for some item and it is not available
+								<Col className="text-center">
+									<div>
+										<i className="far fa-frown" /> No items found for this
+										search query
+									</div>
+									Go Back to the <Link to="/">Home Page</Link>
+								</Col>
+							)}
 					</Row>
 					<Paginate
 						className="mt-auto text-center"

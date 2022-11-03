@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	Row,
@@ -239,7 +240,18 @@ const ProductPage = ({ history, match }) => {
 									)}
 									<ListGroup.Item>
 										<Row>
-											<Button
+											{
+												'error' in userDetails && <LinkContainer to={`/login`}>
+												<Button
+												onClick={handleAddToCart}
+												type="button"
+												className="btn-block btn-lg">
+												Add To Cart
+												</Button>
+												</LinkContainer>
+											}
+											{
+												'user' in userDetails && <Button
 												onClick={handleAddToCart}
 												type="button"
 												className="btn-block btn-lg"
@@ -247,6 +259,8 @@ const ProductPage = ({ history, match }) => {
 											>
 												Add To Cart
 											</Button>
+											}
+											
 										</Row>
 									</ListGroup.Item>
 								</ListGroup>

@@ -34,6 +34,8 @@ export const listProducts =
 				`/api/products?keyword=${keyword}&pageNumber=${pageNumber}&pageSize=${pageSize}`
 			);
 
+			console.log(data)
+
 			dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
 		} catch (error) {
 			dispatch({

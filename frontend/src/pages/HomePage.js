@@ -83,35 +83,11 @@ const HomePage = ({ match, history }) => {
 		);
 	}, []);
 
-	const url = "http://localhost:2525/api/upload";
-
-	const createItem = (item) => axios.post(url, item);
-	const getItem = (item) => axios.get(url);
-	const [image, setImage] = useState('');
-
-	const onSubmitHandler = async (e) => {
-		e.preventDefault();
-		await createItem({ image });
-	}
-
-	const [renderedImage, setRenderedImage] = useState('');
-	const ImagePhoto = async (e) => {
-		e.preventDefault();
-		const res = await getItem();
-		console.log(res.data);
-		if ('data' in res)
-			setRenderedImage(res.data.image);
-	}
 
 	return (
 		<>
 
 			<Meta />
-
-			
-			
-
-
 			{/* display carousel only on larger screens */}
 			{!keyword ? (
 				window.innerWidth > 430 && <MultiCarouselPage />

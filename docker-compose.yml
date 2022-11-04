@@ -34,8 +34,6 @@ services:
       - "3000:3000"
     networks:
       - app-network
-    links:
-      - server
 
 networks:
     app-network:

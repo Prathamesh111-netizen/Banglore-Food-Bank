@@ -1,16 +1,14 @@
 import express from "express";
 import {
-  raisedExtract,
-  raisedAdd,
   createCampaign
-} from "../controllers/campaignControllers";
+} from "../controllers/campaignControllers.js";
 
 const router = express.Router();
 
-router.route("/raisedExtract").get(raisedExtract);
+// router.route("/raisedExtract").get(raisedExtract);
 
-router.route("/raisedAdd").post(raisedAdd);
+// router.route("/raisedAdd").post(raisedAdd);
 
-router.route("/createCampaign").post(createCampaign);
+router.route("/create").post(createCampaign);
 
 export default router;

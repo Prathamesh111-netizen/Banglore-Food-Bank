@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Button, Image, FloatingLabel, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { listProductDetails, updateProduct } from '../actions/productActions';
+import { listProductDetails, createProduct } from '../actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 import axios from 'axios';
 import Loader from '../components/Loader';
@@ -12,7 +12,7 @@ import FileBase64 from 'react-file-base64';
 
 import FormContainer from '../components/FormContainer';
 
-const ProductEditPage = ({ match, history }) => {
+const ProductCreatePage = ({ match, history }) => {
 	// all variable for stroing product details
 	const productId = match.params.id;
 	const [name, setName] = useState('');
@@ -62,30 +62,11 @@ const ProductEditPage = ({ match, history }) => {
 		}
 	}, [userLoginError, dispatch, userInfo]);
 
-	useEffect(() => {
-		dispatch(listProductDetails(productId));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(listProductDetails(productId));
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
-	// update the product details in state
-	useEffect(() => {
-		if (successUpdate) {
-			dispatch({ type: PRODUCT_UPDATE_RESET });
-			history.push('/admin/productlist');
-		} else {
-			if (!product || product._id !== productId) {
-				dispatch(listProductDetails(productId));
-			} else {
-				setName(product.name);
-				setPrice(product.price);
-				setOriginalImage(product.image);
-				setBrand(product.brand);
-				setCategory(product.category);
-				setDescription(product.description);
-				setCountInStock(product.countInStock);
-			}
-		}
-	}, [product, dispatch, productId, history, successUpdate]);
 
 	// submit the product details
 	const handleSubmit = async (e) => {
@@ -96,11 +77,12 @@ const ProductEditPage = ({ match, history }) => {
 		const { data } = response;
 		setOriginalImage(data.image)
 		dispatch(
-			updateProduct({
+			createProduct({
 				_id: productId,
 				name,
 				brand,
 				price,
+				user : userInfo.id,
 				category,
 				description,
 				countInStock,
@@ -362,7 +344,7 @@ const ProductEditPage = ({ match, history }) => {
 									<Button
 										type='submit'
 										className='my-1 ms-auto'>
-										Update Product
+										Create Product
 									</Button>
 								</div>
 							</Form>
@@ -374,4 +356,4 @@ const ProductEditPage = ({ match, history }) => {
 	);
 };
 
-export default ProductEditPage;
+export default ProductCreatePage;

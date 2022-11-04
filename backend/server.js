@@ -8,7 +8,7 @@ import path from "path";
 import fs from "fs";
 import shortid from "shortid";
 import Razorpay from "razorpay";
-
+import campaignRoutes from "./routes/campaignRoutes.js"
 
 // middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
@@ -16,8 +16,8 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
-import generatePDF from "./generatePdf.js";
 import Item from "./models/itemModel.js";
+import generatePDF from "./generatePdf.js"
 
 dotenv.config();
 const app = express();
@@ -100,16 +100,14 @@ app.post("/razorpay", async (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/campaigns", campaignRoutes)
 
-// Certificacte
 app.post("/getCertificate", async (req, res) => {
-	// res.send("<h1>Welcome to Full Stack Simplified</h1>");
-	// res.download("output.pdf");
 	try {
 		const { name, email } = req.body;
 		console.log(name, email);
 		generatePDF(name, email);
-		res.download("CertificateOfDonation.pdf");
+		res.download("../CertificateOfDonation.pdf" );
 		res.status(200).json({
 			success: true,
 			data: "Successfull"
@@ -123,19 +121,9 @@ app.post("/getCertificate", async (req, res) => {
 	}
 });
 
-app.get('/image',
-	async (req, res) => {
-		// const { imageId } = req.body;
-		console.log("reached server")
-		const Image = await Item.findById("6363cf139477fe425057e4b8");
-		try {
-			res.status(201).json(Image);
-		} catch (error) {
-			console.log(error)
-		}
-	}
-)
-app.post('/image',
+app.get('/download/certificate', (req, res) => res.download('CertificateOfDonation.pdf'))
+
+app.post('/api/upload',
 	async (req, res) => {
 		const { image } = req.body;
 		const item = new Item(image);

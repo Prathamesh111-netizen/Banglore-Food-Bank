@@ -24,6 +24,7 @@ import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductEditPage from "./pages/ProductEditPage";
+import ProductCreatePage from "./pages/ProductCreatePage";
 import OrderListPage from "./pages/OrderListPage";
 import ErrorPage from "./pages/ErrorPage";
 import "slick-carousel/slick/slick.css";
@@ -89,6 +90,7 @@ const App = () => {
 							component={ProductListPage}
 							exact
 						/>
+						<Route path="/admin/product/create" component={ProductCreatePage} />
 						<Route path="/admin/product/:id/edit" component={ProductEditPage} />
 						<Route path="/admin/orderlist" component={OrderListPage} exact />
 						<Route

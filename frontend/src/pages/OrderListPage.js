@@ -104,8 +104,8 @@ const ProductListPage = ({ history, match }) => {
 											)}
 										</td>
 										<td>
-											{order.isDelivered ? (
-												getDateString(order.deliveredAt)
+											{/* {order.isDelivered ? (
+												getDateString(order.updatedAt)
 											) : (
 												<i
 													className="fas fa-times"
@@ -113,8 +113,18 @@ const ProductListPage = ({ history, match }) => {
 														color: "red"
 													}}
 												/>
-											)}
+											)} */}
+											<LinkContainer to={`/order/${order._id}`}>
+													<Button
+														variant="link"
+														className="btn-sm"
+														style={{ margin: "0" }}
+													>
+														Details
+													</Button>
+												</LinkContainer>
 										</td>
+										
 										{/* <td
                       style={{
                         display: "flex",

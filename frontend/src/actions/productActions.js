@@ -102,7 +102,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 };
 
 // create a product, when the user is an admin
-export const createProduct = () => async (dispatch, getState) => {
+export const createProduct = (product) => async (dispatch, getState) => {
 	try {
 		dispatch({ type: PRODUCT_CREATE_REQUEST });
 
@@ -125,7 +125,7 @@ export const createProduct = () => async (dispatch, getState) => {
 					},
 			  };
 
-		const { data } = await axios.post(`/api/products/`, {}, config);
+		const { data } = await axios.post(`/api/products/`, product, config);
 
 		dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
 	} catch (error) {

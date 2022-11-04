@@ -72,6 +72,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.isConfirmed = req.body.email === user.email;
     user.email = req.body.email || user.email;
     user.isAdmin = req.body.isAdmin;
+    user.profilephoto = req.body.profilephoto || user.profilephoto;
     
     const updatedUser = await user.save();
     if (updatedUser) {
@@ -80,7 +81,8 @@ const updateUser = asyncHandler(async (req, res) => {
         email: updatedUser.email,
         name: updatedUser.name,
         isAdmin: updatedUser.isAdmin,
-        isConfirmed: updatedUser.isConfirmed
+        isConfirmed: updatedUser.isConfirmed,
+        profilephoto : user.profilephoto
       });
     }
   } else {
@@ -396,7 +398,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     // update whichever field is sent in the req body
     user.name = req.body.name || user.name;
-    user.avatar = req.body.avatar || user.avatar;
+    user.profilephoto = req.body.profilephoto || user.profilephoto;
     if (req.body.email) user.isConfirmed = req.body.email === user.email;
     user.email = req.body.email || user.email;
     if (req.body.password) {
@@ -416,7 +418,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       id: updatedUser._id,
       email: updatedUser.email,
       name: updatedUser.name,
-      avatar: updatedUser.avatar,
+      profilephoto: updatedUser.profilephoto,
       isAdmin: updatedUser.isAdmin,
       isConfirmed: updatedUser.isConfirmed
     };

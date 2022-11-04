@@ -91,10 +91,12 @@ const updateOrderToPay = asyncHandler(async (req, res) => {
 });
 
 // @desc  update the order object once delivered
-// @route PUT /api/orders/:id/pay
+// @route PUT /api/orders/:id/deliver
 // @access PRIVATE/ADMIN
 const updateOrderToDeliver = asyncHandler(async (req, res) => {
+
   const order = await Order.findById(req.params.id);
+  console.log(order)
   if (order) {
     order.isDelivered = true;
     order.deliveredAt = Date.now();

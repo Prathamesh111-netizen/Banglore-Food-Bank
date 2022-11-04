@@ -83,7 +83,7 @@ const HomePage = ({ match, history }) => {
 		);
 	}, []);
 
-	const url = "http://localhost:2525/image";
+	const url = "http://localhost:2525/api/upload";
 
 	const createItem = (item) => axios.post(url, item);
 	const getItem = (item) => axios.get(url);
@@ -108,31 +108,8 @@ const HomePage = ({ match, history }) => {
 
 			<Meta />
 
-			{/* <h1>Upload Image</h1>
-			<form action="/uploadphoto" enctype="multipart/form-data" method="POST">
-				<input type="file" name="myImage" accept="image/*" />
-				<input type="submit" value="Upload Photo" />
-			</form> */}
-			<form action="" onSubmit={ImagePhoto}>
-				<div className="right-align">
-					<button className="btn">submit</button>
-				</div>
-			</form>
-			<img src={renderedImage} alt="FUU" />
-
-			<form action="" onSubmit={onSubmitHandler}>
-				<input type="text" className="input-field"
-					onChange={e => setImage({ ...image })}
-				/>
-				<FileBase64
-					type="file"
-					multiple={false}
-					onDone={({ base64 }) => setImage({ image: base64 })}
-				/>
-				<div className="right-align">
-					<button className="btn">submit</button>
-				</div>
-			</form>
+			
+			
 
 
 			{/* display carousel only on larger screens */}

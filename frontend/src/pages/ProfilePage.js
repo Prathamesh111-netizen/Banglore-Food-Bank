@@ -28,6 +28,7 @@ import Meta from "../components/Meta";
 import axios from "axios";
 import getDateString from "../utils/getDateString";
 import "../styles/profile-page.css";
+import FileBase64 from 'react-file-base64';
 
 const ProfilePage = ({ history }) => {
 	const inputFile = useRef(null);
@@ -138,25 +139,21 @@ const ProfilePage = ({ history }) => {
 		);
 	};
 
-	// handle file upload to aws bucket
-	const handleImageUpload = async (e) => {
-		const file = e.target.files[0];
-		const formData = new FormData();
-		formData.append("image", file);
+	const url = "http://localhost:2525/api/upload";
+	const createItem = (item) => axios.post(url, item);
+	const [image, setImage] = useState('');
+
+	const onImageUpload = async (e) => {
+		e.preventDefault();
+		const response = await createItem({ image });
+		const {data}= response;
+		setAvatar(data.image)
 		setUploading(true);
 		try {
-			const config = {
-				headers: {
-					"Content-Type": "multipart/form-data"
-				}
-			};
-
-			const { data } = await axios.post("/api/upload", formData, config);
-			setAvatar(data);
 			dispatch(
 				updateUserProfile({
 					id: user.id,
-					avatar: data
+					profilephoto: data.image
 				})
 			);
 			setUploading(false);
@@ -164,7 +161,7 @@ const ProfilePage = ({ history }) => {
 			setErrorImageUpload("Please choose a valid image");
 			setUploading(false);
 		}
-	};
+	}
 
 	// handle image overlay div's click to upload new file
 	const handleImageClick = () => {
@@ -235,13 +232,13 @@ const ProfilePage = ({ history }) => {
 				style={
 					userInfo && !userInfo.isConfirmed
 						? {
-								opacity: "0.5",
-								pointerEvents: "none"
-						  }
+							opacity: "0.5",
+							pointerEvents: "none"
+						}
 						: {
-								opacity: "1",
-								pointerEvents: ""
-						  }
+							opacity: "1",
+							pointerEvents: ""
+						}
 				}
 			>
 				<h2 className="text-center">My Profile</h2>
@@ -288,20 +285,29 @@ const ProfilePage = ({ history }) => {
 										cursor: "pointer"
 									}}
 								/>
-								<div className="image-overlay" onClick={handleImageClick}>
-									Click to upload image
-								</div>
+
+								<form action="" onSubmit={onImageUpload}>
+									<FileBase64
+										type="file"
+										multiple={false}
+										onDone={({ base64 }) => setImage({ image: base64 })}
+									/>
+									<div className="right-align">
+										<button className="btn">Upload Profile Photo</button>
+									</div>
+								</form>
 							</div>
 						)}
 						{/* for image upload */}
-						<input
+						{/* <input
 							type="file"
 							accept="image/*"
 							id="file"
 							ref={inputFile}
 							onChange={handleImageUpload}
 							style={{ display: "none" }}
-						/>
+						/> */}
+
 						<Form onSubmit={handleSubmit}>
 							<Form.Group controlId="name">
 								<FloatingLabel
@@ -324,9 +330,9 @@ const ProfilePage = ({ history }) => {
 								style={
 									userInfo && userInfo.isSocialLogin
 										? {
-												pointerEvents: "none",
-												opacity: "0.8"
-										  }
+											pointerEvents: "none",
+											opacity: "0.8"
+										}
 										: {}
 								}
 							>
@@ -448,13 +454,13 @@ const ProfilePage = ({ history }) => {
 				style={
 					userInfo && !userInfo.isConfirmed
 						? {
-								opacity: "0.5",
-								pointerEvents: "none"
-						  }
+							opacity: "0.5",
+							pointerEvents: "none"
+						}
 						: {
-								opacity: "1",
-								pointerEvents: ""
-						  }
+							opacity: "1",
+							pointerEvents: ""
+						}
 				}
 			>
 				{allOrders.length ? (

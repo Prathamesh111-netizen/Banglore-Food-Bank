@@ -69,15 +69,15 @@ const OrderPage = ({ match, history }) => {
 		const addScript = async () => {
 			const config = userInfo.isSocialLogin
 				? {
-						headers: {
-							Authorization: `SocialLogin ${userInfo.id}`
-						}
-				  }
+					headers: {
+						Authorization: `SocialLogin ${userInfo.id}`
+					}
+				}
 				: {
-						headers: {
-							Authorization: `Bearer ${userInfo.accessToken}`
-						}
-				  };
+					headers: {
+						Authorization: `Bearer ${userInfo.accessToken}`
+					}
+				};
 			const { data: clientID } = await axios.get("/api/config/paypal", config);
 			// add the script
 			const script = document.createElement("script");
@@ -101,6 +101,18 @@ const OrderPage = ({ match, history }) => {
 	const successDeliveryHandler = () => {
 		dispatch(deliverOrder(orderID));
 	};
+
+	const [isCertificateReady, setisCertificateReady] = useState(false)
+	const PdfURL = "http://localhost:2525/download/certificate"
+	const DownloadCertificate = async () => {
+		console.log("downloading certificate")
+		const url = "http://localhost:2525";
+
+		const res = await axios.post(`${url}/getCertificate`, { name: userInfo.name, email: userInfo.email })
+		const { data } = res;
+		if (data.success)
+			setisCertificateReady(true)
+	}
 
 	return loading ? (
 		<Loader />
@@ -126,10 +138,10 @@ const OrderPage = ({ match, history }) => {
 									<div>
 										{order.isPaid ? (
 											<Message variant="success">
-												Paid at: {getDateString(order.paidAt)}
+												Donated At: {getDateString(order.createdAt)}
 											</Message>
 										) : (
-											<Message variant="danger">Not Paid</Message>
+											<Message variant="danger">Not Donated</Message>
 										)}
 									</div>
 								</ListGroup.Item>
@@ -206,7 +218,7 @@ const OrderPage = ({ match, history }) => {
 									</ListGroup.Item>
 
 									<ListGroup.Item>
-										<Row>
+										{/* <Row>
 											<Col>
 												<strong>Tax</strong>
 											</Col>
@@ -217,7 +229,7 @@ const OrderPage = ({ match, history }) => {
 													currency: "INR"
 												})}
 											</Col>
-										</Row>
+										</Row> */}
 									</ListGroup.Item>
 									<ListGroup.Item>
 										<Row>
@@ -277,7 +289,7 @@ const OrderPage = ({ match, history }) => {
 										!order.isDelivered && (
 											<ListGroup.Item>
 												{loadingDeliver && <Loader />}
-												<div className="d-grid">
+												{userInfo.isAdmin && <div className="d-grid">
 													<Button
 														type="button"
 														variant="info"
@@ -286,7 +298,40 @@ const OrderPage = ({ match, history }) => {
 													>
 														Mark as Delivered
 													</Button>
-												</div>
+												</div>}
+
+											</ListGroup.Item>
+										)}
+									{userInfo &&
+										order.isPaid &&
+										order.isDelivered && (
+											<ListGroup.Item>
+												{loadingDeliver && <Loader />}
+												{!isCertificateReady && <div className="d-grid">
+													<Button
+														type="button"
+														variant="info"
+														size="lg"
+														onClick={DownloadCertificate}
+													>
+														Get Honour Code Certificate
+													</Button>
+													{/* <Link to="/files/myfile.pdf" target="_blank" download>Download</Link> */}
+												</div>}
+												{isCertificateReady && <div className="d-grid">
+													<a href={PdfURL}>
+														<Button
+															type="button"
+															variant="info"
+															size="lg"
+															onClick={DownloadCertificate}
+														>
+															Download Honour Code Certificate
+														</Button>
+													</a>
+													{/* <Link to="/files/myfile.pdf" target="_blank" download>Download</Link> */}
+												</div>}
+
 											</ListGroup.Item>
 										)}
 								</ListGroup>

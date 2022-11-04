@@ -1,5 +1,5 @@
 {
-	"name": "Banglore Food Bank Challenge",
+	"name": "banglorefoodbank",
 	"version": "1.0.0",
 	"description": "Code for Good 2022: Banglore food bank Challenge Winners",
 	"main": "server.js",
@@ -32,7 +32,7 @@
 		"cookie-session": "^1.4.0",
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
-		"express": "^4.17.1",
+		"express": "^4.18.2",
 		"express-async-handler": "^1.1.4",
 		"express-session": "^1.17.2",
 		"gravatar": "^1.8.2",
@@ -42,6 +42,7 @@
 		"multer": "^1.4.4",
 		"multer-s3": "^2.9.0",
 		"nodemailer": "^6.6.3",
+		"nodemon": "2.0.20",
 		"passport": "^0.4.1",
 		"passport-github2": "^0.1.12",
 		"passport-google-oauth20": "^2.0.0",
@@ -55,6 +56,6 @@
 	},
 	"devDependencies": {
 		"concurrently": "^6.2.0",
-		"nodemon": "^2.0.8"
+		"nodemon": "^2.0.20"
 	}
 }

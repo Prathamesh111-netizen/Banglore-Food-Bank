@@ -12,6 +12,7 @@ import {
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 import Paginate from "../components/Paginate";
 import { refreshLogin, getUserDetails } from "../actions/userActions";
+import { Link } from "react-router-dom";
 
 const ProductListPage = ({ history, match }) => {
 	const pageNumber = match.params.pageNumber || 1;
@@ -89,15 +90,17 @@ const ProductListPage = ({ history, match }) => {
 					<h1>Products</h1>
 				</Col>
 				<Col style={{ display: "flex", justifyContent: "flex-end" }}>
-					<Button
-						className="my-3"
-						style={{
-							padding: "0.5em 1em"
-						}}
-						onClick={handleCreateProduct}
-					>
-						<i className="fas fa-plus" /> Create Product
-					</Button>
+					<Link to="/admin/product/create">
+						<Button
+							className="my-3"
+							style={{
+								padding: "0.5em 1em"
+							}}
+							onClick={handleCreateProduct}
+						>
+							<i className="fas fa-plus" /> Create Product
+						</Button>
+					</Link>
 				</Col>
 			</Row>
 			{errorDelete && (

@@ -13,23 +13,23 @@ const campaignSchema = mongoose.Schema(
     // //     required: true,
     // //     ref: "Campaign"
     // //   },
-    // campaignName: {
-    //   type: String,
-    //   required: true,
-    //   ref: "CampaignId"
-    // },
-    // organization: {
-    //   type: String
-    //   // required: true
-    // },
-    // image: {
-    //   type: String,
-    //   required: true
-    // },
-    // description: {
-    //   type: String,
-    //   required: true
-    // },
+    name: {
+      type: String,
+      required: true,
+      ref: "CampaignId"
+    },
+    title: {
+      type: String
+      // required: true
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
     total: {
       type: Number,
       required: true,
@@ -39,6 +39,10 @@ const campaignSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0
+    },
+    type:{
+      type : String,
+      required : true
     }
   },
   {
@@ -66,4 +70,4 @@ const donationSchema = mongoose.Schema({
 const Campaign = mongoose.model("Campaign", campaignSchema);
 const Donation = mongoose.model("Donation", donationSchema);
 
-module.exports = { Campaign, Donation };
+export { Campaign, Donation };

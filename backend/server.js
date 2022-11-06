@@ -5,7 +5,6 @@ import morgan from "morgan"; // show the API endpoints
 import compression from "compression"; // use gzip compression in the express server
 import cors from "cors"; // allow cross origin requests
 import path from "path";
-import fs from "fs";
 import shortid from "shortid";
 import Razorpay from "razorpay";
 import campaignRoutes from "./routes/campaignRoutes.js"
@@ -16,7 +15,6 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
-import Item from "./models/itemModel.js";
 import generatePDF from "./generatePdf.js"
 
 dotenv.config();
@@ -40,11 +38,8 @@ app.use(compression()); // to use gzip
 app.get("/", (req, res) => {
 	res.json({ status: "ok" });
 });
-app.post("/", (req, res) => {
-	res.json({ status: "ok" });
-});
 
-app.post("/verification", (req, res) => {
+app.post("/api/verification", (req, res) => {
 	const secret = process.env.secret;
 
 	console.log(req.body);
@@ -70,7 +65,7 @@ app.post("/verification", (req, res) => {
 	res.json({ status: "ok" });
 });
 
-app.post("/razorpay", async (req, res) => {
+app.post("/api/razorpay", async (req, res) => {
 	const payment_capture = 1;
 
 	console.log(req.query);
@@ -102,7 +97,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/campaigns", campaignRoutes)
 
-app.post("/getCertificate", async (req, res) => {
+app.post("/api/getCertificate", async (req, res) => {
 	try {
 		const { name, email } = req.body;
 		console.log(name, email);
@@ -121,19 +116,8 @@ app.post("/getCertificate", async (req, res) => {
 	}
 });
 
-app.get('/download/certificate', (req, res) => res.download('CertificateOfDonation.pdf'))
+app.get('/api/certificate', (req, res) => res.download('CertificateOfDonation.pdf'))
 
-app.post('/api/upload',
-	async (req, res) => {
-		const { image } = req.body;
-		const item = new Item(image);
-		try {
-			await item.save();
-			res.status(201).json(item);
-		} catch (error) {
-		}
-	}
-)
 
 const __dirname = path.resolve();
 

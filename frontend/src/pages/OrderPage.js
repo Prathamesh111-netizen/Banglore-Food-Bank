@@ -103,12 +103,12 @@ const OrderPage = ({ match, history }) => {
 	};
 
 	const [isCertificateReady, setisCertificateReady] = useState(false)
-	const PdfURL = "http://localhost:2525/download/certificate"
+	const PdfURL = "http://localhost:2525/api/certificate"
 	const DownloadCertificate = async () => {
 		console.log("downloading certificate")
 		const url = "http://localhost:2525";
 
-		const res = await axios.post(`${url}/getCertificate`, { name: userInfo.name, email: userInfo.email })
+		const res = await axios.post(`${url}/api/certificate`, { name: userInfo.name, email: userInfo.email })
 		const { data } = res;
 		if (data.success)
 			setisCertificateReady(true)
@@ -217,20 +217,7 @@ const OrderPage = ({ match, history }) => {
 										</Row>
 									</ListGroup.Item>
 
-									<ListGroup.Item>
-										{/* <Row>
-											<Col>
-												<strong>Tax</strong>
-											</Col>
-											<Col>
-												{order.taxPrice.toLocaleString("en-IN", {
-													maximumFractionDigits: 2,
-													style: "currency",
-													currency: "INR"
-												})}
-											</Col>
-										</Row> */}
-									</ListGroup.Item>
+									
 									<ListGroup.Item>
 										<Row>
 											<Col>

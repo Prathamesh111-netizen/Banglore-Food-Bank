@@ -120,7 +120,7 @@ const CartPage = ({ match, location, history }) => {
 		console.log("amount", amount);
 
 		const data = await fetch(
-			`http://localhost:2525/razorpay?amount=${amount}&currency=${"INR"}`,
+			`http://localhost:2525/api/razorpay?amount=${amount}&currency=${"INR"}`,
 			{
 				method: "POST"
 			}

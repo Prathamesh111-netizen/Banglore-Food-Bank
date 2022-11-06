@@ -39,7 +39,6 @@ function AlertDialogSlide() {
   return (
     <div>
        <IconButton  aria-label="upload picture" component="label" onClick={handleClickOpen}>
-            {/* <input hidden accept="image/*" type="file" /> */}
             <QrCode2Icon sx={{ color: "white", cursor: "pointer"}}/>
         </IconButton>
       <Dialog
@@ -139,6 +138,7 @@ const Header = () => {
       <Navbar
         bg="primary"
         variant="dark"
+        collapseOnSelect expand="lg"
       >
         <Container>
           <LinkContainer to="/">
@@ -153,17 +153,9 @@ const Header = () => {
             </Navbar.Brand>
             </LinkContainer>
            
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-          {/* history is available only inside Route, so this is used */}
-          {/* display searchbar inside navbar in large screens only */}
-          {/* <Route
-						render={({ history }) => (
-							<div className="d-none d-md-block">
-								<SearchBox history={history} />
-							</div>
-						)}
-					/> */}
-
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav
             className="ms-auto nav-mobile"
             style={
@@ -223,7 +215,7 @@ const Header = () => {
             {userInfo && (<LinkContainer to="/cart">
               <Nav.Link>
                 {/* indicate cart size */}
-                {count ? (
+                {count && window.innerWidth > 1000 ? (
                   <div className="nav-cart-size">
                     <span
                       style={
@@ -240,7 +232,7 @@ const Header = () => {
                 )}
                 <i className="fas fa-shopping-cart navbar-icons" />{" "}
                 {!(userInfo && userInfo.isAdmin) || window.innerWidth >= 430
-                  ? "Cart"
+                  ? "Donation"
                   : ""}
               </Nav.Link>
             </LinkContainer>)}
@@ -315,7 +307,7 @@ const Header = () => {
             )}
             
           </Nav>
-
+              </Navbar.Collapse>
         </Container>
              
 

@@ -1,14 +1,18 @@
 import React, { PureComponent } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import { listAllOrders } from "../actions/orderActions.js"
+import  { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 const data = [
-	// { name: "School Meal", value: 400 },
 	{ name: "Dairy Products", value: 300 },
 	{ name: "Grocery", value: 300 },
 	{ name: "Fruits", value: 200 }
 ];
-
+	
 const renderActiveShape = (props) => {
+	
+	
 	const RADIAN = Math.PI / 180;
 	const {
 		cx,

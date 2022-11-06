@@ -8,7 +8,7 @@ import path from "path";
 import shortid from "shortid";
 import Razorpay from "razorpay";
 import campaignRoutes from "./routes/campaignRoutes.js"
-
+import fs from "fs"
 // middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
@@ -16,6 +16,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import generatePDF from "./generatePdf.js"
+import { getOrderById } from "./controllers/orderControllers.js";
 
 dotenv.config();
 const app = express();
@@ -90,6 +91,7 @@ app.post("/api/razorpay", async (req, res) => {
 		console.log(error);
 	}
 });
+const __dirname = path.resolve();
 
 // configure all the routes
 app.use("/api/users", userRoutes);
@@ -97,12 +99,10 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/campaigns", campaignRoutes)
 
-app.post("/api/getCertificate", async (req, res) => {
+app.post("/api/certificate", async (req, res) => {
 	try {
-		const { name, email } = req.body;
-		console.log(name, email);
-		generatePDF(name, email);
-		res.download("../CertificateOfDonation.pdf" );
+		const { name, email, orderID } = req.body;
+		generatePDF(name, email, orderID);
 		res.status(200).json({
 			success: true,
 			data: "Successfull"
@@ -116,10 +116,21 @@ app.post("/api/getCertificate", async (req, res) => {
 	}
 });
 
-app.get('/api/certificate', (req, res) => res.download('CertificateOfDonation.pdf'))
+app.get('/api/certificate/:orderID', async(req, res) => { 
+	const {orderID} = req.params
+	const filePath = __dirname + `/CertificateOfDonation-${orderID}.pdf`;
+	const fileName = `CertificateOfDonation-${orderID}.pdf`
+	res.download(filePath, fileName, function(err) {
+		if (err) {
+		  console.log(err); // Check error if you want
+		}
+		fs.unlink(filePath, function(){
+			console.log("File was deleted") // Callback
+		});
+	  });
+})
 
 
-const __dirname = path.resolve();
 
 // To prepare for deployment
 if (process.env.NODE_ENV === "production") {

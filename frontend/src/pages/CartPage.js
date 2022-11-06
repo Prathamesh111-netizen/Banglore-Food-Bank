@@ -112,11 +112,7 @@ const CartPage = ({ match, location, history }) => {
 			(acc, item) => acc + item.qty * item.price,
 			0
 		);
-		// .toLocaleString("en-IN", {
-		// 	maximumFractionDigits: 2,
-		// 	style: "currency",
-		// 	currency: "INR"
-		// });
+	
 		console.log("amount", amount);
 
 		const data = await fetch(
@@ -166,7 +162,7 @@ const CartPage = ({ match, location, history }) => {
 	}
 	return (
 		<Row>
-			<Meta title="My Cart | Kosells" />
+			<Meta title="My Cart | Banglore Food Bank" />
 			<Col md={8}>
 				<h1>Shopping Cart.</h1>
 				{!cartItems.length ? (

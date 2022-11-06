@@ -5,6 +5,7 @@ module.exports = function(app) {
     '/api',
     createProxyMiddleware({
       target: 'https://server-prathameshpawarspit.cloud.okteto.net',
+      // target: 'http://localhost:2525',
       changeOrigin: true,
     })
   );

@@ -1,7 +1,7 @@
 import PDFDocument from "pdfkit";
 import fs from "fs";
 
-const generatePDF = (name, email) => {
+const generatePDF = (name, email, orderID) => {
   const doc = new PDFDocument({
     layout: "landscape",
     size: "A4"
@@ -14,7 +14,7 @@ const generatePDF = (name, email) => {
     }
   }
 
-  doc.pipe(fs.createWriteStream("CertificateOfDonation.pdf"));
+  doc.pipe(fs.createWriteStream(`CertificateOfDonation-${orderID}.pdf`));
 
   doc.rect(0, 0, doc.page.width, doc.page.height).fill("#fff");
 

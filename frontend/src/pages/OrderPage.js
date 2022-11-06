@@ -103,12 +103,14 @@ const OrderPage = ({ match, history }) => {
 	};
 
 	const [isCertificateReady, setisCertificateReady] = useState(false)
-	const PdfURL = "http://localhost:2525/api/certificate"
+
+	const PdfURL = `http://localhost:2525/api/certificate/${orderID}`
+
 	const DownloadCertificate = async () => {
-		console.log("downloading certificate")
+		const { name, email } = userInfo;
 		const url = "http://localhost:2525";
 
-		const res = await axios.post(`${url}/api/certificate`, { name: userInfo.name, email: userInfo.email })
+		const res = await axios.post(`${url}/api/certificate`, { name, email, orderID })
 		const { data } = res;
 		if (data.success)
 			setisCertificateReady(true)
@@ -217,7 +219,7 @@ const OrderPage = ({ match, history }) => {
 										</Row>
 									</ListGroup.Item>
 
-									
+
 									<ListGroup.Item>
 										<Row>
 											<Col>
@@ -311,7 +313,6 @@ const OrderPage = ({ match, history }) => {
 															type="button"
 															variant="info"
 															size="lg"
-															onClick={DownloadCertificate}
 														>
 															Download Honour Code Certificate
 														</Button>

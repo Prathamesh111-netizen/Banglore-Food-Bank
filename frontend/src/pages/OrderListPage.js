@@ -10,6 +10,7 @@ import { listAllOrders } from "../actions/orderActions";
 import getDateString from "../utils/getDateString";
 import PieChart from "../components/pieChart";
 import AreaChart from "../components/areaChart";
+import * as XLSX from 'xlsx/xlsx.mjs';
 
 const ProductListPage = ({ history, match }) => {
 	const pageNumber = match.params.pageNumber || 1; // to fetch various pages of orders
@@ -22,6 +23,14 @@ const ProductListPage = ({ history, match }) => {
 
 	const userDetails = useSelector((state) => state.userDetails);
 	const { error: userLoginError } = userDetails;
+
+	const downloadExcel = (data) => {
+		const worksheet = XLSX.utils.json_to_sheet(data);
+		const workbook = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+		XLSX.writeFile(workbook, "DataSheet.xlsx");
+		
+	};
 
 	// refresh access tokens aif user details are failed
 	useEffect(() => {
@@ -48,6 +57,10 @@ const ProductListPage = ({ history, match }) => {
 				<AreaChart />
 			</div>
 
+			<button onClick={()=>downloadExcel(orders)}>
+								Download As Excel
+			</button>
+			
 			<Row className="align-items-center">
 				<Col>
 					<h1>All Orders ({`${total || 0}`})</h1>

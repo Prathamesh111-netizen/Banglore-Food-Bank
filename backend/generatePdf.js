@@ -39,14 +39,13 @@ const generatePDF = (name, email, orderID) => {
   const maxWidth = 140;
   const maxHeight = 70;
 
-  // doc.image("assets/winners.png", doc.page.width / 2 - maxWidth / 2, 60, {
-  //   fit: [maxWidth, maxHeight],
-  //   align: "center"
-  // });
+  doc.image("assets/winners.png", doc.page.width / 2 - maxWidth / 2, 60, {
+    fit: [maxWidth, maxHeight],
+    align: "center"
+  });
 
   jumpLine(doc, 5);
 
-  // .font("fonts/NotoSansJP-Light.otf")
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -56,8 +55,7 @@ const generatePDF = (name, email, orderID) => {
 
   jumpLine(doc, 2);
 
-  // Content
-  // .font("fonts/NotoSansJP-Regular.otf")
+  
   doc
     .fontSize(16)
     .fill("#021c27")
@@ -67,7 +65,6 @@ const generatePDF = (name, email, orderID) => {
 
   jumpLine(doc, 1);
 
-  // .font("fonts/NotoSansJP-Light.otf")
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -77,7 +74,6 @@ const generatePDF = (name, email, orderID) => {
 
   jumpLine(doc, 2);
 
-  // .font("fonts/NotoSansJP-Bold.otf")
   doc
     .fontSize(24)
     .fill("#021c27")
@@ -100,7 +96,6 @@ const generatePDF = (name, email, orderID) => {
     10: "November",
     11: "December"
   };
-  // .font("fonts/NotoSansJP-Light.otf")
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -133,27 +128,27 @@ const generatePDF = (name, email, orderID) => {
     .moveTo(startLine1, signatureHeight)
     .lineTo(endLine1, signatureHeight)
     .stroke();
-  // doc.image("assets/ach.jpg", startLine1 + 405, 50, {
-  //   // fit: [100, 100],
-  //   // align: "left",
-  //   height: 250,
-  //   width: 200
-  // });
-  // doc.image("assets/sergio1.png", startLine1 + 20, 370, {
-  //   fit: [maxWidth, maxHeight],
-  //   align: "left"
-  // });
-  // doc.image("assets/raquel.png", startLine1 + 315, 370, {
-  //   fit: [maxWidth, maxHeight],
-  //   align: "left"
-  // });
+  doc.image("assets/ach.jpg", startLine1 + 405, 50, {
+    fit: [100, 100],
+    align: "left",
+    height: 250,
+    width: 200
+  });
+  doc.image("assets/sergio1.png", startLine1 + 20, 370, {
+    fit: [maxWidth, maxHeight],
+    align: "left"
+  });
+  doc.image("assets/raquel.png", startLine1 + 315, 370, {
+    fit: [maxWidth, maxHeight],
+    align: "left"
+  });
 
   const startLine2 = endLine1;
   const endLine2 = startLine2 + lineSize;
-  // doc
-  //   .moveTo(startLine2, signatureHeight)
-  //   .lineTo(endLine2, signatureHeight)
-  //   .stroke();
+  doc
+    .moveTo(startLine2, signatureHeight)
+    .lineTo(endLine2, signatureHeight)
+    .stroke();
 
   const startLine3 = endLine2;
   const endLine3 = startLine3 + lineSize;
@@ -161,8 +156,6 @@ const generatePDF = (name, email, orderID) => {
     .moveTo(startLine3, signatureHeight)
     .lineTo(endLine3, signatureHeight)
     .stroke();
-
-    // .font("fonts/NotoSansJP-Bold.otf")s
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -174,7 +167,6 @@ const generatePDF = (name, email, orderID) => {
       align: "center"
     });
 
-    // .font("fonts/NotoSansJP-Light.otf")
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -186,31 +178,28 @@ const generatePDF = (name, email, orderID) => {
       align: "center"
     });
 
-  // doc
-  //   .font("fonts/NotoSansJP-Bold.otf")
-  //   .fontSize(10)
-  //   .fill("#021c27")
-  //   .text("Student Name", startLine2, signatureHeight + 10, {
-  //     columns: 1,
-  //     columnGap: 0,
-  //     height: 40,
-  //     width: lineSize,
-  //     align: "center",
-  //   });
+    doc
+    .fontSize(10)
+    .fill("#021c27")
+    .text("Student Name", startLine2, signatureHeight + 10, {
+      columns: 1,
+      columnGap: 0,
+      height: 40,
+      width: lineSize,
+      align: "center",
+    });
 
-  // doc
-  //   .font("fonts/NotoSansJP-Light.otf")
-  //   .fontSize(10)
-  //   .fill("#021c27")
-  //   .text("Student", startLine2, signatureHeight + 25, {
-  //     columns: 1,
-  //     columnGap: 0,
-  //     height: 40,
-  //     width: lineSize,
-  //     align: "center",
-  //   });
+  doc
+    .fontSize(10)
+    .fill("#021c27")
+    .text("Student", startLine2, signatureHeight + 25, {
+      columns: 1,
+      columnGap: 0,
+      height: 40,
+      width: lineSize,
+      align: "center",
+    });
 
-  // .font("fonts/NotoSansJP-Bold.otf")
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -222,7 +211,6 @@ const generatePDF = (name, email, orderID) => {
       align: "center"
     });
 
-    // .font("fonts/NotoSansJP-Light.otf")
   doc
     .fontSize(10)
     .fill("#021c27")
@@ -236,30 +224,11 @@ const generatePDF = (name, email, orderID) => {
 
   jumpLine(doc, 4);
 
-  // Validation link
-  // const link = "https://validate-your-certificate.hello/validation-code-here";
+ 
+  doc
+    .fontSize(10)
+    .fill("#021c27")
 
-  // const linkWidth = doc.widthOfString(link);
-  // const linkHeight = doc.currentLineHeight();
-
-  // doc
-  //   .underline(doc.page.width / 2 - linkWidth / 2, 448, linkWidth, linkHeight, {
-  //     color: "#021c27",
-  //   })
-  //   .link(doc.page.width / 2 - linkWidth / 2, 448, linkWidth, linkHeight, link);
-
-  // doc
-  //   .font("fonts/NotoSansJP-Light.otf")
-  //   .fontSize(10)
-  //   .fill("#021c27")
-  //   .text(link, doc.page.width / 2 - linkWidth / 2, 448, linkWidth, linkHeight);
-
-  // Footer
-  const bottomHeight = doc.page.height - 100;
-
-  // doc.image("assets/qr.png", doc.page.width / 2 - 30, bottomHeight, {
-  //   fit: [60, 60],
-  // });
 
   doc.end();
 

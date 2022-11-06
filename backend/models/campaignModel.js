@@ -13,14 +13,9 @@ const campaignSchema = mongoose.Schema(
     // //     required: true,
     // //     ref: "Campaign"
     // //   },
-    name: {
-      type: String,
-      required: true,
-      ref: "CampaignId"
-    },
     title: {
-      type: String
-      // required: true
+      type: String,
+      required: true
     },
     image: {
       type: String,
@@ -31,11 +26,6 @@ const campaignSchema = mongoose.Schema(
       required: true
     },
     total: {
-      type: Number,
-      required: true,
-      default: 0
-    },
-    raised: {
       type: Number,
       required: true,
       default: 0
@@ -51,17 +41,15 @@ const campaignSchema = mongoose.Schema(
 );
 
 const donationSchema = mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
+  userId: {
+    type: String,
     required: true,
-    ref: "User"
   },
-  campaignName: {
-    type: mongoose.Schema.Types.ObjectId,
+  campaignId: {
+    type: String,
     required: true,
-    ref: "CampaignId"
   },
-  donation: {
+  Amount: {
     type: Number,
     required: true
   }

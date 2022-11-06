@@ -16,7 +16,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import generatePDF from "./generatePdf.js"
-import { getOrderById } from "./controllers/orderControllers.js";
+import Item from "./models/itemModel.js";
 
 dotenv.config();
 const app = express();
@@ -131,6 +131,17 @@ app.get('/api/certificate/:orderID', async (req, res) => {
 	});
 })
 
+app.post('/api/upload',
+	async (req, res) => {
+		const { image } = req.body;
+		const item = new Item(image);
+		try {
+			await item.save();
+			res.status(201).json(item);
+		} catch (error) {
+		}
+	}
+)
 
 
 // To prepare for deployment

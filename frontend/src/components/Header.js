@@ -147,7 +147,7 @@ const Header = () => {
 								src="/images/image_low.png"
 								className="nav-logo"
 								alt="logo"
-								width="2rem"
+								heght="3rem"
 							/>
               Bangalore Food Bank
             </Navbar.Brand>

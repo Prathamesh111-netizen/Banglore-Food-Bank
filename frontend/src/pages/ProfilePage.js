@@ -12,7 +12,7 @@ import {
 	Image,
 	FloatingLabel
 } from "react-bootstrap";
-
+import * as XLSX from 'xlsx/xlsx.mjs';
 import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -57,6 +57,13 @@ const ProfilePage = ({ history }) => {
 	const userProfileUpdate = useSelector((state) => state.userProfileUpdate);
 	const { success } = userProfileUpdate;
 
+	const downloadExcel = (data) => {
+		const worksheet = XLSX.utils.json_to_sheet(data);
+		const workbook = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+		XLSX.writeFile(workbook, "DataSheet.xlsx");
+	};
+	
 	const orderListUser = useSelector((state) => state.orderListUser);
 	const {
 		loading: loadingOrdersList,
@@ -139,9 +146,9 @@ const ProfilePage = ({ history }) => {
 		);
 	};
 
-	const url = "http://localhost:2525/api/upload";
+	const url = `${process.env.REACT_APP_BACKEND_SERVER}/api/upload`
 	const createItem = (item) => axios.post(url, item);
-	const [image, setImage] = useState('');
+	const [image, setImage] = useState(userInfo.profilephoto);
 
 	const onImageUpload = async (e) => {
 		e.preventDefault();
@@ -296,6 +303,7 @@ const ProfilePage = ({ history }) => {
 										<button className="btn">Upload Profile Photo</button>
 									</div>
 								</form>
+								
 							</div>
 						)}
 						{/* for image upload */}
@@ -449,6 +457,7 @@ const ProfilePage = ({ history }) => {
 				)}
 			</Col>
 			{/* display orders */}
+			
 			<Col
 				md={9}
 				style={
@@ -463,6 +472,9 @@ const ProfilePage = ({ history }) => {
 						}
 				}
 			>
+				<button onClick={()=>downloadExcel(orders)}>
+								Download As Excel
+							</button>
 				{allOrders.length ? (
 					<>
 						<h2 className="text-center">My Orders</h2>
@@ -472,7 +484,8 @@ const ProfilePage = ({ history }) => {
 							<Message dismissible variant="danger" duration={10}>
 								{errorOrdersList}
 							</Message>
-						) : (
+							) : (
+									
 							<Table
 								striped
 								bordered

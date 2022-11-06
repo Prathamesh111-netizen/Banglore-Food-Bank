@@ -164,7 +164,7 @@ const CartPage = ({ match, location, history }) => {
 		<Row>
 			<Meta title="My Cart | Banglore Food Bank" />
 			<Col md={8}>
-				<h1>Shopping Cart.</h1>
+				<h1>Donations to do</h1>
 				{!cartItems.length ? (
 					<Message>
 						Your Cart is empty. <Link to="/">Go Back.</Link>{" "}

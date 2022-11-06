@@ -90,7 +90,7 @@ const ProductEditPage = ({ match, history }) => {
 	// submit the product details
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const url = "http://localhost:2525/api/upload";
+		const url = `${process.env.REACT_APP_BACKEND_SERVER}/api/upload`
 		const createItem = (item) => axios.post(url, item);
 		const response = await createItem({ image });
 		const { data } = response;

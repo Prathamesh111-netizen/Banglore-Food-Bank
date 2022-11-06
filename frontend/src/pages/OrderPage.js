@@ -104,13 +104,11 @@ const OrderPage = ({ match, history }) => {
 
 	const [isCertificateReady, setisCertificateReady] = useState(false)
 
-	const PdfURL = `http://localhost:2525/api/certificate/${orderID}`
+	const PdfURL = `${process.env.REACT_APP_BACKEND_SERVER}/api/certificate/${orderID}`
 
 	const DownloadCertificate = async () => {
 		const { name, email } = userInfo;
-		const url = "http://localhost:2525";
-
-		const res = await axios.post(`${url}/api/certificate`, { name, email, orderID })
+		const res = await axios.post(PdfURL, { name, email })
 		const { data } = res;
 		if (data.success)
 			setisCertificateReady(true)

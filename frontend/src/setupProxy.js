@@ -4,8 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://server-prathameshpawarspit.cloud.okteto.net',
-      // target: 'http://localhost:2525',
+      target: process.env.REACT_APP_BACKEND_SERVER,
       changeOrigin: true,
     })
   );

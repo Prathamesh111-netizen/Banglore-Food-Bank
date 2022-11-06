@@ -116,7 +116,7 @@ const CartPage = ({ match, location, history }) => {
 		console.log("amount", amount);
 
 		const data = await fetch(
-			`http://localhost:2525/api/razorpay?amount=${amount}&currency=${"INR"}`,
+			`${process.env.REACT_APP_BACKEND_SERVER}/api/razorpay?amount=${amount}&currency=${"INR"}`,
 			{
 				method: "POST"
 			}
@@ -125,7 +125,7 @@ const CartPage = ({ match, location, history }) => {
 		console.log("data", data);
 
 		const options = {
-			key: __DEV__ ? "rzp_test_6MRZgh5jRieE5u" : "PRODUCTION_KEY",
+			key: __DEV__ ? "rzp_test_6MRZgh5jRieE5u" : "rzp_test_6MRZgh5jRieE5u",
 			currency: data.currency,
 			amount: data.amount.toString(),
 			order_id: data.id,

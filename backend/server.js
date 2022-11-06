@@ -99,9 +99,10 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/campaigns", campaignRoutes)
 
-app.post("/api/certificate", async (req, res) => {
+app.post("/api/certificate/:orderID", async (req, res) => {
 	try {
-		const { name, email, orderID } = req.body;
+		const { name, email } = req.body;
+		const { orderID } = req.params
 		generatePDF(name, email, orderID);
 		res.status(200).json({
 			success: true,
@@ -116,18 +117,18 @@ app.post("/api/certificate", async (req, res) => {
 	}
 });
 
-app.get('/api/certificate/:orderID', async(req, res) => { 
-	const {orderID} = req.params
+app.get('/api/certificate/:orderID', async (req, res) => {
+	const { orderID } = req.params
 	const filePath = __dirname + `/CertificateOfDonation-${orderID}.pdf`;
 	const fileName = `CertificateOfDonation-${orderID}.pdf`
-	res.download(filePath, fileName, function(err) {
+	res.download(filePath, fileName, function (err) {
 		if (err) {
-		  console.log(err); // Check error if you want
+			console.log(err); // Check error if you want
 		}
-		fs.unlink(filePath, function(){
+		fs.unlink(filePath, function () {
 			console.log("File was deleted") // Callback
 		});
-	  });
+	});
 })
 
 

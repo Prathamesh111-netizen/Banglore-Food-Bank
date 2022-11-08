@@ -86,6 +86,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     // numReviews,
     countInStock,
     description,
+    isCampaign,
     image
   } = req.body;
   const product = await Product.findById(req.params.id);
@@ -94,12 +95,13 @@ const updateProduct = asyncHandler(async (req, res) => {
   if (product) {
     if (name) product.name = name;
     if (price) product.price = price;
-    // if (brand) product.brand = brand;
+    if (brand) product.brand = brand;
     if (category) product.category = category;
     // if (numReviews) product.numReviews = numReviews;
     // if (countInStock) product.countInStock = countInStock;
     if (description) product.description = description;
     if (image) product.image = image;
+     product.isCampaign = isCampaign;
 
     const updatedProduct = await product.save();
     if (updatedProduct) res.status(201).json(updatedProduct);

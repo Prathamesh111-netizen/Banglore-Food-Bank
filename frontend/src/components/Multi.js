@@ -5,6 +5,7 @@ import image2 from "../assets/gallery01.jpeg";
 import image1 from "../assets/gallery02.jpeg";
 import image3 from "../assets/gallery03.jpeg";
 import "../styles/multi.css";
+import Carousel from 'react-bootstrap/Carousel';
 
 export default class PauseOnHover extends Component {
 	render() {
@@ -23,9 +24,50 @@ export default class PauseOnHover extends Component {
 				{/* <a href="#products" > */}
 					<button class="button-18" onClick={() => window.location.replace("/#products")}>DONATE NOW</button>
 				{/* </a> */}
+	
+				<Carousel>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={image1}
+          alt="First slide"
+        />
+        {/* <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption> */}
+      </Carousel.Item>
+      {/* <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="holder.js/800x400?text=Second slide&bg=282c34"
+          alt="Second slide"
+        />
 
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item> */}
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={image2}
+          alt="Third slide"
+        />
 
-				<Slider {...settings}>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={image3}
+          alt="Third slide"
+        />
+
+      </Carousel.Item>
+				</Carousel>
+				
+				{/* <Slider {...settings}>
 					<div>
 						<img
 							src={image1}
@@ -59,7 +101,7 @@ export default class PauseOnHover extends Component {
 							alt="_image"
 						/>
 					</div>
-				</Slider>
+				</Slider> */}
 				<div className="products" id="products" style={{ marginTop: "100px" }}>
 					<h1 className="title">Food Items</h1>
 				</div>

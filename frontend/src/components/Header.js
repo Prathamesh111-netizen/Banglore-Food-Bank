@@ -176,11 +176,11 @@ const Header = () => {
             <LinkContainer to="/campaigns" variant="primary">
               <AlertDialogSlide />
             </LinkContainer>
-            <LinkContainer to="/campaigns" variant="primary">
-              <Nav.Link>
+            {/* <LinkContainer to="/campaigns" variant="primary"> */}
+              <Nav.Link onClick={() => window.location.replace("/#campaignsSection")}>
                   <i className="fa fa-university navbar-icons" /> Campaign
               </Nav.Link>
-            </LinkContainer>
+            {/* </LinkContainer> */}
             
 
             {userInfo && userInfo.isAdmin && (

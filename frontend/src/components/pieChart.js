@@ -5,9 +5,9 @@ import  { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const data = [
-	{ name: "Dairy Products", value: 300 },
-	{ name: "Grocery", value: 300 },
-	{ name: "Fruits", value: 200 }
+	{ name: "Dairy Products", value: 3 },
+	{ name: "Grocery", value: 3 },
+	{ name: "Fruits", value: 2 }
 ];
 	
 const renderActiveShape = (props) => {
@@ -86,6 +86,8 @@ const renderActiveShape = (props) => {
 };
 
 export default class Example extends PureComponent {
+	
+
 	state = {
 		activeIndex: 0
 	};

@@ -49,7 +49,7 @@ const generatePDF = (name, email, orderID) => {
   doc
     .fontSize(10)
     .fill("#021c27")
-    .text("Super Course for Awesomes", {
+    .text("Doantion to Community", {
       align: "center"
     });
 
@@ -59,7 +59,7 @@ const generatePDF = (name, email, orderID) => {
   doc
     .fontSize(16)
     .fill("#021c27")
-    .text("CERTIFICATE OF COMPLETION", {
+    .text("CERTIFICATE OF Donation", {
       align: "center"
     });
 
@@ -159,7 +159,7 @@ const generatePDF = (name, email, orderID) => {
   doc
     .fontSize(10)
     .fill("#021c27")
-    .text("Harsh Patil", startLine1, signatureHeight + 10, {
+    .text("Prathamesh Pawar", startLine1, signatureHeight + 10, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -181,7 +181,7 @@ const generatePDF = (name, email, orderID) => {
     doc
     .fontSize(10)
     .fill("#021c27")
-    .text("Student Name", startLine2, signatureHeight + 10, {
+    .text("Yash Pabari", startLine2, signatureHeight + 10, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -192,7 +192,7 @@ const generatePDF = (name, email, orderID) => {
   doc
     .fontSize(10)
     .fill("#021c27")
-    .text("Student", startLine2, signatureHeight + 25, {
+    .text("Volunteer Lead", startLine2, signatureHeight + 25, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -203,7 +203,7 @@ const generatePDF = (name, email, orderID) => {
   doc
     .fontSize(10)
     .fill("#021c27")
-    .text("Prathamesh Pawar", startLine3, signatureHeight + 10, {
+    .text("Harsh Patil", startLine3, signatureHeight + 10, {
       columns: 1,
       columnGap: 0,
       height: 40,
@@ -214,7 +214,7 @@ const generatePDF = (name, email, orderID) => {
   doc
     .fontSize(10)
     .fill("#021c27")
-    .text("CEO, Full Stack Simplified", startLine3, signatureHeight + 25, {
+    .text("Secretary, banglore Food Bank", startLine3, signatureHeight + 25, {
       columns: 1,
       columnGap: 0,
       height: 40,

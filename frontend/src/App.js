@@ -5,36 +5,39 @@ import {
 	Switch,
 } from "react-router-dom";
 import { Container } from "react-bootstrap";
+
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ServiceWorkerWrapper from "./ServiceWorkerWrapper";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
-import CartPage from "./pages/CartPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import ProfilePage from "./pages/ProfilePage";
-import ConfirmPage from "./pages/ConfirmPage";
-import ShippingPage from "./pages/ShippingPage";
-import PaymentPage from "./pages/PaymentPage";
-import PlaceOrderPage from "./pages/PlaceOrderPage";
-import OrderPage from "./pages/OrderPage";
-import PasswordResetPage from "./pages/PasswordResetPage";
-import UserListPage from "./pages/UserListPage";
-import UserEditPage from "./pages/UserEditPage";
-import ProductListPage from "./pages/ProductListPage";
-import ProductEditPage from "./pages/ProductEditPage";
-import ProductCreatePage from "./pages/ProductCreatePage";
-import OrderListPage from "./pages/OrderListPage";
-import ErrorPage from "./pages/ErrorPage";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Allcampaigns from "./components/allcampaigns";
-import CreateCampaign from "./components/createCampign/createCampaign";
-import ServiceWorkerWrapper from "./ServiceWorkerWrapper";
-import aboutUs from "./pages/aboutus";
+import HomePage from "./pages/HomePage.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
+import CartPage from "./pages/CartPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import ConfirmPage from "./pages/ConfirmPage.jsx";
+import ShippingPage from "./pages/ShippingPage.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
+import PlaceOrderPage from "./pages/PlaceOrderPage.jsx";
+import OrderPage from "./pages/OrderPage.jsx";
+import PasswordResetPage from "./pages/PasswordResetPage.jsx";
+import UserListPage from "./pages/UserListPage.jsx";
+import UserEditPage from "./pages/UserEditPage.jsx";
+import ProductListPage from "./pages/ProductListPage.jsx";
+import ProductEditPage from "./pages/ProductEditPage.jsx";
+import ProductCreatePage from "./pages/ProductCreatePage.jsx";
+import OrderListPage from "./pages/OrderListPage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
+import aboutUs from "./pages/aboutus.jsx";
 
-
+// import Allcampaigns from "./pages/CampaignPage.jsx";
+// import CreateCampaign from "./pages/createCampaign.jsx";
+// import EditCampaign from "./pages/editCampaign.jsx";
 
 const App = () => {
 	return (
@@ -48,9 +51,12 @@ const App = () => {
 						{/*	<Route path="" element={<Allcampaigns />} />
 						</Route> */}
 						<Route path="/" component={HomePage} exact />
-						{/* <Route path="/" component={HomePage} exact /> */}
+
+						{/* Campaigns Section */}
+						{/* <Route path="/campaigns/edit/:campaignId" component={EditCampaign} exact />
 						<Route path="/campaigns/create" component={CreateCampaign} exact />
-						<Route path="/campaigns" component={Allcampaigns} exact />
+						<Route path="/campaigns" component={Allcampaigns} exact /> */}
+
 						<Route path="/search/:keyword" component={HomePage} exact />
 						<Route path="/page/:pageNumber" component={HomePage} exact />
 						<Route

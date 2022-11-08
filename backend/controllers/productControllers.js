@@ -62,12 +62,16 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @access PRIVATE/ADMIN
 const createProduct = asyncHandler(async (req, res) => {
   // create a dummy product which can be edited later
-  console.log("reached server")
-  const reqBody = req.body;
-  const product = new Product(reqBody);
-  const createdProduct = await product.save();
-  console.log(createdProduct)
-  res.status(201).json(createdProduct);
+  try {
+    const reqBody = req.body;
+    const product = new Product(reqBody);
+    const createdProduct = await product.save();
+     res.status(201).json(createdProduct);
+    } catch (error) {
+      console.log(error)
+      res.status(500).json('failure');
+  }
+ 
 });
 
 // @desc Update a product

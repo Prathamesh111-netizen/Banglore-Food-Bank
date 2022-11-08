@@ -11,9 +11,6 @@ import Message from "../components/Message";
 import SearchBox from "../components/SearchBox";
 import ProductSkeleton from "../components/ProductSkeleton";
 import MultiCarouselPage from "../components/Multi";
-import axios from 'axios';
-import FileBase64 from 'react-file-base64';
-
 
 import "reactjs-popup/dist/index.css";
 
@@ -24,10 +21,6 @@ const HomePage = ({ match, history }) => {
 	const [products, setProducts] = useState(null);
 	const [productAvailable, setProductAvailable] = useState(false);
 	const dispatch = useDispatch();
-
-
-
-
 
 	// get the products list, userinfo and user details form the redix store
 	const productList = useSelector((state) => state.productList);

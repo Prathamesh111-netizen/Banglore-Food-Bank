@@ -9,6 +9,7 @@ const notFound = (req, res, next) => {
 // custom error handler to return json instead of HTML when any error is thrown
 const errorHandler = (err, req, res, next) => {
 	// check the status code of the response
+	console.log(err)
 	const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
 	res.status(statusCode);
 	res.json({

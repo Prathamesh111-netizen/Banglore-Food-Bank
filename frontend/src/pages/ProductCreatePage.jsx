@@ -62,23 +62,12 @@ const ProductCreatePage = ({ match, history }) => {
 		}
 	}, [userLoginError, dispatch, userInfo]);
 
-	// useEffect(() => {
-	// 	dispatch(listProductDetails(productId));
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
-
-
 	// submit the product details
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const url = "http://localhost:2525/api/upload";
-		const createItem = (item) => axios.post(url, item);
-		const response = await createItem({ image });
-		const { data } = response;
-		setOriginalImage(data.image)
+		setOriginalImage(image.image)
 		dispatch(
 			createProduct({
-				_id: productId,
 				name,
 				brand,
 				price,
@@ -86,14 +75,11 @@ const ProductCreatePage = ({ match, history }) => {
 				category,
 				description,
 				countInStock,
-				image: data.image,
+				image: image.image,
 			})
 		);
+		history.push('/admin/productlist');
 	};
-
-	// for image input, use a ref
-	const inputFile = useRef(null);
-
 
 	return (
 		<>
@@ -103,7 +89,7 @@ const ProductCreatePage = ({ match, history }) => {
 				</Button>
 			</Link>
 			<FormContainer style={{ marginTop: '-2em' }}>
-				<h1>Edit Product</h1>
+				<h1>Create Product</h1>
 				{loadingUpdate ? (
 					<Loader />
 				) : errorUpdate ? (
@@ -192,7 +178,7 @@ const ProductCreatePage = ({ match, history }) => {
 														alignSelf: 'center',
 													}}>
 													<Image
-														src={originalimage}
+														src={image && image.image}
 														alt={name}
 														// title='Click to input file'
 														style={{
@@ -204,75 +190,12 @@ const ProductCreatePage = ({ match, history }) => {
 																'0.25rem',
 														}}
 													/>
-													{/* <div
-														className='image-overlay-product'
-														onClick={
-															handleImageClick
-														}>
-														Click to upload image
-													</div> */}
+													
 												</div>
 											</Col>
 										</Row>
 									</Form.Group>
-									// <Form.Group controlId='image'>
-									// 	<Row>
-									// 		<Col md={9}>
-									// 			<FloatingLabel
-									// 				controlId='imageinput'
-									// 				label='Image URL'
-									// 				className='mb-3'>
-									// 				<Form.Control
-									// 					size='lg'
-									// 					placeholder='Enter image URL'
-									// 					type='text'
-									// 					value={image}
-									// 					onChange={(e) =>
-									// 						setImage(
-									// 							e.target.value
-									// 						)
-									// 					}
-									// 				/>
-									// 			</FloatingLabel>
-									// 		</Col>
-									// 		<Col md={3}>
-									// 			<input
-									// 				accept='image/*'
-									// 				type='file'
-									// 				id='file'
-									// 				ref={inputFile}
-									// 				onChange={handleFileUpload}
-									// 				style={{ display: 'none' }}
-									// 			/>
-									// 			<div
-									// 				className='profile-page-image'
-									// 				style={{
-									// 					alignSelf: 'center',
-									// 				}}>
-									// 				<Image
-									// 					src={image}
-									// 					alt={name}
-									// 					title='Click to input file'
-									// 					style={{
-									// 						width: '100%',
-									// 						border: '1px solid #ced4da',
-									// 						marginBottom: '1em',
-									// 						cursor: 'pointer',
-									// 						borderRadius:
-									// 							'0.25rem',
-									// 					}}
-									// 				/>
-									// 				<div
-									// 					className='image-overlay-product'
-									// 					onClick={
-									// 						handleImageClick
-									// 					}>
-									// 					Click to upload image
-									// 				</div>
-									// 			</div>
-									// 		</Col>
-									// 	</Row>
-									// </Form.Group>
+									
 								)}
 								<Form.Group controlId='brand'>
 									<FloatingLabel
@@ -340,12 +263,15 @@ const ProductCreatePage = ({ match, history }) => {
 										/>
 									</FloatingLabel>
 								</Form.Group>
-								<div className='d-flex'>
-									<Button
+											<div className='d-flex'>
+												{/* <Link to='/admin/productlist'> */}
+													<Button
 										type='submit'
 										className='my-1 ms-auto'>
 										Create Product
 									</Button>
+												{/* </Link> */}
+									
 								</div>
 							</Form>
 						)}

@@ -19,9 +19,9 @@ import mongoose from "mongoose";
 const productSchema = mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
-      ref: "User"
+      // ref: "User"
     },
     name: {
       type: String,
@@ -31,10 +31,10 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true
     },
-    // brand: {
-    // 	type: String,
-    // 	required: true,
-    // },
+    brand: {
+    	type: String,
+    	required: true,
+    },
     category: {
       type: String,
       required: true
@@ -43,28 +43,16 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true
     },
-    // store an array of review objs
-    // reviews: [reviewsSchema],
-    // rating: {
-    // 	type: Number,
-    // 	required: true,
-    // 	default: 0,
-    // },
-    // numReviews: {
-    // 	type: Number,
-    // 	required: true,
-    // 	default: 0,
-    // },
     price: {
       type: Number,
       required: true,
       default: 0
     },
-    // countInStock: {
-    // 	type: Number,
-    // 	required: true,
-    // 	default: 0,
-    // },
+    countInStock: {
+    	type: Number,
+    	required: true,
+    	default: 0,
+    }
   },
   {
     timestamps: true

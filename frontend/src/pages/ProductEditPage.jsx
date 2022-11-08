@@ -76,9 +76,11 @@ const ProductEditPage = ({ match, history }) => {
 			if (!product || product._id !== productId) {
 				dispatch(listProductDetails(productId));
 			} else {
+				console.log(product)
 				setName(product.name);
 				setPrice(product.price);
 				setOriginalImage(product.image);
+				// setImage(product.image);
 				setBrand(product.brand);
 				setCategory(product.category);
 				setDescription(product.description);
@@ -90,11 +92,7 @@ const ProductEditPage = ({ match, history }) => {
 	// submit the product details
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const url = `${process.env.REACT_APP_BACKEND_SERVER}/api/upload`
-		const createItem = (item) => axios.post(url, item);
-		const response = await createItem({ image });
-		const { data } = response;
-		setOriginalImage(data.image)
+		setOriginalImage(image.image)
 		dispatch(
 			updateProduct({
 				_id: productId,
@@ -104,13 +102,11 @@ const ProductEditPage = ({ match, history }) => {
 				category,
 				description,
 				countInStock,
-				image: data.image,
+				image: image.image,
 			})
 		);
 	};
 
-	// for image input, use a ref
-	const inputFile = useRef(null);
 
 
 	return (
@@ -210,7 +206,7 @@ const ProductEditPage = ({ match, history }) => {
 														alignSelf: 'center',
 													}}>
 													<Image
-														src={originalimage}
+														src={image != '' ? image.image : originalimage}
 														alt={name}
 														// title='Click to input file'
 														style={{
@@ -233,64 +229,7 @@ const ProductEditPage = ({ match, history }) => {
 											</Col>
 										</Row>
 									</Form.Group>
-									// <Form.Group controlId='image'>
-									// 	<Row>
-									// 		<Col md={9}>
-									// 			<FloatingLabel
-									// 				controlId='imageinput'
-									// 				label='Image URL'
-									// 				className='mb-3'>
-									// 				<Form.Control
-									// 					size='lg'
-									// 					placeholder='Enter image URL'
-									// 					type='text'
-									// 					value={image}
-									// 					onChange={(e) =>
-									// 						setImage(
-									// 							e.target.value
-									// 						)
-									// 					}
-									// 				/>
-									// 			</FloatingLabel>
-									// 		</Col>
-									// 		<Col md={3}>
-									// 			<input
-									// 				accept='image/*'
-									// 				type='file'
-									// 				id='file'
-									// 				ref={inputFile}
-									// 				onChange={handleFileUpload}
-									// 				style={{ display: 'none' }}
-									// 			/>
-									// 			<div
-									// 				className='profile-page-image'
-									// 				style={{
-									// 					alignSelf: 'center',
-									// 				}}>
-									// 				<Image
-									// 					src={image}
-									// 					alt={name}
-									// 					title='Click to input file'
-									// 					style={{
-									// 						width: '100%',
-									// 						border: '1px solid #ced4da',
-									// 						marginBottom: '1em',
-									// 						cursor: 'pointer',
-									// 						borderRadius:
-									// 							'0.25rem',
-									// 					}}
-									// 				/>
-									// 				<div
-									// 					className='image-overlay-product'
-									// 					onClick={
-									// 						handleImageClick
-									// 					}>
-									// 					Click to upload image
-									// 				</div>
-									// 			</div>
-									// 		</Col>
-									// 	</Row>
-									// </Form.Group>
+									
 								)}
 								<Form.Group controlId='brand'>
 									<FloatingLabel

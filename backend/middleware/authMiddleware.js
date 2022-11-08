@@ -4,7 +4,6 @@ import User from "../models/userModel.js";
 
 const protectRoute = asyncHandler(async (req, res, next) => {
   let token;
-
   // if the header includes a Bearer token
   if (
     req.headers.authorization &&

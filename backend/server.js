@@ -32,14 +32,70 @@ const razorpay = new Razorpay({
 	key_secret: process.env.key_secret
 });
 
-app.use(express.json()); // middleware to use req.body
+app.use(express.json({limit: '5mb'})); // middleware to use req.body
 app.use(cors()); // to avoid CORS errors
-app.use(compression()); // to use gzip
+// app.use(express.urlencoded({limit: '5mb'}));
+// app.use(compression()); // to use gzip
 
 app.get("/", (req, res) => {
 	res.json({ status: "ok" });
 });
 
+
+const __dirname = path.resolve();
+
+// configure all the routes
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/campaigns", campaignRoutes)
+
+app.post("/api/certificate/:orderID", async (req, res) => {
+	try {
+		const { name, email } = req.body;
+		const { orderID } = req.params
+		generatePDF(name, email, orderID);
+		res.status(200).json({
+			success: true,
+			data: "Successfull"
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({
+			success: true,
+			data: error
+		});
+	}
+});
+
+app.get('/api/certificate/:orderID', async (req, res) => {
+	const { orderID } = req.params
+	const filePath = __dirname + `/CertificateOfDonation-${orderID}.pdf`;
+	const fileName = `CertificateOfDonation-${orderID}.pdf`
+	res.download(filePath, fileName, function (err) {
+		if (err) {
+			console.log(err); // Check error if you want
+		}
+		fs.unlink(filePath, function () {
+			console.log("File was deleted") // Callback
+		});
+	});
+})
+
+app.post('/api/upload',
+	async (req, res, next) => {
+		console.log(req.body)
+		const { image } = req.body;
+		const item = new Item(image);
+		try {
+			await item.save();
+			res.status(201).json(item);
+		} catch (error) {
+			console.log(error)
+      		next(error)
+		}
+	}
+)
 app.post("/api/verification", (req, res) => {
 	const secret = process.env.secret;
 
@@ -91,58 +147,6 @@ app.post("/api/razorpay", async (req, res) => {
 		console.log(error);
 	}
 });
-const __dirname = path.resolve();
-
-// configure all the routes
-app.use("/api/users", userRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/campaigns", campaignRoutes)
-
-app.post("/api/certificate/:orderID", async (req, res) => {
-	try {
-		const { name, email } = req.body;
-		const { orderID } = req.params
-		generatePDF(name, email, orderID);
-		res.status(200).json({
-			success: true,
-			data: "Successfull"
-		});
-	} catch (error) {
-		console.log(error);
-		res.status(400).json({
-			success: true,
-			data: error
-		});
-	}
-});
-
-app.get('/api/certificate/:orderID', async (req, res) => {
-	const { orderID } = req.params
-	const filePath = __dirname + `/CertificateOfDonation-${orderID}.pdf`;
-	const fileName = `CertificateOfDonation-${orderID}.pdf`
-	res.download(filePath, fileName, function (err) {
-		if (err) {
-			console.log(err); // Check error if you want
-		}
-		fs.unlink(filePath, function () {
-			console.log("File was deleted") // Callback
-		});
-	});
-})
-
-app.post('/api/upload',
-	async (req, res) => {
-		const { image } = req.body;
-		const item = new Item(image);
-		try {
-			await item.save();
-			res.status(201).json(item);
-		} catch (error) {
-		}
-	}
-)
-
 
 // To prepare for deployment
 if (process.env.NODE_ENV === "production") {

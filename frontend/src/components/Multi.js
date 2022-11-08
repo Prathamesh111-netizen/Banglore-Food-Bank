@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import { HashLink as Link } from 'react-router-hash-link';
 import image2 from "../assets/gallery01.jpeg";
 import image1 from "../assets/gallery02.jpeg";
 import image3 from "../assets/gallery03.jpeg";
@@ -18,13 +19,10 @@ export default class PauseOnHover extends Component {
 		};
 		return (
 			// style={{  }}
-			<div style={{ textAlign: "center", textdecoration: "none" }}>
-				<a
-					href="#products"
-					style={{ textdecoration: "none" }}
-				>
-					<button class="button-18">DONATE NOW</button>
-				</a>
+			<div style={{ textAlign: "center", textDecoration: "none" }} >
+				{/* <a href="#products" > */}
+					<button class="button-18" onClick={() => window.location.replace("/#products")}>DONATE NOW</button>
+				{/* </a> */}
 
 
 				<Slider {...settings}>

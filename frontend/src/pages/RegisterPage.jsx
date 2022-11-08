@@ -196,15 +196,13 @@ const RegisterPage = ({ location, history }) => {
                 </FloatingLabel>
               </InputGroup>
             </Form.Group>
-            <Form.Group controlId="email" className="my-2">
+            <Form.Group  className="my-2">
               <FloatingLabel
-                controlId="emailinput"
                 label="Contact Number"
                 className="mb-3">
                 <Form.Control
                   size="lg"
                   placeholder="Enter Contact Number"
-                  type="email"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                 />

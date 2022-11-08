@@ -86,7 +86,7 @@ const ProductListPage = ({ history, match }) => {
     <>
       <Row className="align-items-center">
         <Col>
-          <h1>Products</h1>
+          <h1>Food Items</h1>
         </Col>
         <Col style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Link to="/admin/product/create">

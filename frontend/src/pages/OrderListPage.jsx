@@ -56,11 +56,18 @@ const ProductListPage = ({ history, match }) => {
         <AreaChart />
       </div>
 
-      <button onClick={() => downloadExcel(orders)}>Download As Excel</button>
+      <Button
+        type="button"
+        variant="info"
+        size="lg"
+        onClick={() => downloadExcel(orders)}
+      >
+        Download As Excel
+      </Button>
 
       <Row className="align-items-center">
         <Col>
-          <h1>All Orders ({`${total || 0}`})</h1>
+          <h1>All Donations ({`${total || 0}`})</h1>
         </Col>
       </Row>
       {loading ? (

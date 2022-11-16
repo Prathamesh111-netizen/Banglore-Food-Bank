@@ -169,3 +169,20 @@ app.listen(PORT, () =>
 		`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
 	)
 );
+import axios from "axios"
+const options = {
+	method: 'POST',
+	url: 'https://hourmailer.p.rapidapi.com/send',
+	headers: {
+	  'content-type': 'application/json',
+	  'X-RapidAPI-Key': 'e942fcb3d1msh7aee0425ff22963p1851e1jsn2a40ab57299d',
+	  'X-RapidAPI-Host': 'hourmailer.p.rapidapi.com'
+	},
+	data: '{"toAddress":"recipient@example.com","title":"Hello","message":"This is your <b>notification</b>!"}'
+  };
+
+//   axios.request(options).then(function (response) {
+// 	  console.log("mail sent successfully");
+//   }).catch(function (error) {
+// 	  console.error("error");
+//   });

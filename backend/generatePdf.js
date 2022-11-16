@@ -1,5 +1,6 @@
 import PDFDocument from "pdfkit";
 import fs from "fs";
+import axios from "axios";
 
 const generatePDF = (name, email, orderID) => {
   const doc = new PDFDocument({
@@ -231,61 +232,7 @@ const generatePDF = (name, email, orderID) => {
 
 
   doc.end();
-
-  //  Mail
-  const output = `
-      <h2>Thank you for donating!</h2>
-    <p>Because you we will be able to feed more people</h3>
-    <p>Banglore food bank</p>
-  `;
-  // // create reusable transporter object using the default SMTP transport
-  // let transporter = nodemailer.createTransport({
-  //   // host: "smtp.ethereal.email",
-  //   port: 587,
-  //   secure: false, // true for 465, false for other ports
-  //   auth: {
-  //     user: `${process.env.FSS_EMAIL}`, // generated ethereal user
-  //     pass: `${process.env.FSS_PASSWORD}` // generated ethereal password
-  //   },
-  //   // If on localhost
-  //   tls: {
-  //     rejectUnauthorized: false
-  //   },
-  //   service: "gmail"
-  // });
-
-  // send mail with defined transport object
-  // let mailOptions = {
-  //   // from: '"Nodemailer Testing" <raj.sanghavi1@svkmmumbai.onmicrosoft.com>', // sender address
-  //   from: "Banglore Food Bank",
-  //   to: email, // list of receivers
-  //   subject: "Successful Donation ✔", // Subject line
-  //   // text: "Hello world?", // plain text body
-  //   // html: "<b>Hello world?</b>", // html body
-  //   html: output,
-  //   attachments: [
-  //     {
-  //       path: "./CertificateOfDonation.pdf"
-  //     }
-  //   ]
-  // };
-
-  // transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     console.log(error);
-  //     // res.json(error);
-  //   } else {
-  //     console.log("Message sent: %s", info.messageId);
-  //     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  //     // res.status(200).json({
-  //     //   success: true,
-  //     //   emailSuccess: true,
-  //     //   data: user,
-  //     // });
-  //   }
-  // });
   return doc
 };
 
-// generatePDF("raj", "REACT COURSE");
 export default generatePDF;

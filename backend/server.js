@@ -17,7 +17,7 @@ import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import generatePDF from "./generatePdf.js"
 import Item from "./models/itemModel.js";
-
+import User from "./models/userModel.js";
 dotenv.config();
 const app = express();
 
@@ -148,6 +148,16 @@ app.post("/api/razorpay", async (req, res) => {
 	}
 });
 
+app.get('/api/verifyac/:userID', async(req, res)=>{
+	const {userID} = req.params;
+	const user = await User.findById(userID);
+	if (user) {
+	  user.isConfirmed = true;
+	 await user.save();
+	}
+	res.send("Account activated successfully")
+})
+
 // To prepare for deployment
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "/frontend/build")));
@@ -169,20 +179,3 @@ app.listen(PORT, () =>
 		`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
 	)
 );
-import axios from "axios"
-const options = {
-	method: 'POST',
-	url: 'https://hourmailer.p.rapidapi.com/send',
-	headers: {
-	  'content-type': 'application/json',
-	  'X-RapidAPI-Key': 'e942fcb3d1msh7aee0425ff22963p1851e1jsn2a40ab57299d',
-	  'X-RapidAPI-Host': 'hourmailer.p.rapidapi.com'
-	},
-	data: '{"toAddress":"recipient@example.com","title":"Hello","message":"This is your <b>notification</b>!"}'
-  };
-
-//   axios.request(options).then(function (response) {
-// 	  console.log("mail sent successfully");
-//   }).catch(function (error) {
-// 	  console.error("error");
-//   });

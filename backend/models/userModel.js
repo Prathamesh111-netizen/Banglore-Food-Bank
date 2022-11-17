@@ -30,7 +30,7 @@ const userSchema = mongoose.Schema(
 		isConfirmed: {
 			type: Boolean,
 			required: true,
-			default: true
+			default: false
 		},
 		profilephoto: {
 			type: String,

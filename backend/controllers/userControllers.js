@@ -5,6 +5,7 @@ import generateToken from "../utils/generateToken.js";
 import sendMail from "../utils/sendMail.js";
 import generateGravatar from "../utils/generateGravatar.js";
 import jwt from "jsonwebtoken";
+import axios from "axios";
 
 // @desc Get all the users info
 // @route GET /api/users
@@ -28,7 +29,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
     users: allUsers,
     page,
     pages: Math.ceil(count / pageSize),
-    total: count
+    total: count,
   });
 });
 
@@ -40,7 +41,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   if (user) {
     await user.remove();
     res.json({
-      message: "User removed from DB"
+      message: "User removed from DB",
     });
   } else {
     res.status(404);
@@ -73,7 +74,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
     user.isAdmin = req.body.isAdmin;
     user.profilephoto = req.body.profilephoto || user.profilephoto;
-    
+
     const updatedUser = await user.save();
     if (updatedUser) {
       res.json({
@@ -82,7 +83,7 @@ const updateUser = asyncHandler(async (req, res) => {
         name: updatedUser.name,
         isAdmin: updatedUser.isAdmin,
         isConfirmed: updatedUser.isConfirmed,
-        profilephoto : user.profilephoto
+        profilephoto: user.profilephoto,
       });
     }
   } else {
@@ -109,7 +110,7 @@ const authUser = asyncHandler(async (req, res) => {
     if (!existingToken) {
       const newToken = await Token.create({
         email,
-        token: refreshToken
+        token: refreshToken,
       });
     } else {
       existingToken.token = refreshToken;
@@ -121,11 +122,11 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       name: user.name,
       isAdmin: user.isAdmin,
-      profilephoto : user.profilephoto,
+      profilephoto: user.profilephoto,
       isConfirmed: user.isConfirmed,
       avatar: user.avatar,
       accessToken,
-      refreshToken
+      refreshToken,
     });
   } else {
     res.status(401);
@@ -155,14 +156,33 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     avatar,
     contact,
-    organization
+    organization,
     // isAdmin
   });
 
   // if user was created successfully
   if (user) {
     // send a mail for email verification of the newly registred email id
-    await sendMail(user._id, email, "email verification");
+    const VerficationLink = `${process.env.REACT_APP_BACKEND_SERVER}/api/verifyac/${user._id}`;
+    const options = {
+      method: "POST",
+      url: "https://hourmailer.p.rapidapi.com/send",
+      headers: {
+        "content-type": "application/json",
+        "X-RapidAPI-Key": "e942fcb3d1msh7aee0425ff22963p1851e1jsn2a40ab57299d",
+        "X-RapidAPI-Host": "hourmailer.p.rapidapi.com",
+      },
+      data: {"toAddress":email,"title":"Account Verfication","message":VerficationLink},
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log("mail sent successfully");
+      })
+      .catch(function (error) {
+        console.error("error");
+      });
 
     const refreshToken = generateToken(user._id, "refresh");
     res.status(201).json({
@@ -175,7 +195,7 @@ const registerUser = asyncHandler(async (req, res) => {
       accessToken: generateToken(user._id, "access"),
       refreshToken,
       contact,
-      organization
+      organization,
     });
   } else {
     res.status(400);
@@ -203,7 +223,7 @@ const mailForEmailVerification = asyncHandler(async (req, res) => {
           name: user.name,
           isAdmin: user.isAdmin,
           avatar: user.avatar,
-          isConfirmed: user.isConfirmed
+          isConfirmed: user.isConfirmed,
         });
       } else {
         res.status(400);
@@ -239,7 +259,7 @@ const mailForPasswordReset = asyncHandler(async (req, res) => {
         name: user.name,
         isAdmin: user.isAdmin,
         avatar: user.avatar,
-        isConfirmed: user.isConfirmed
+        isConfirmed: user.isConfirmed,
       });
     }
   } catch (error) {
@@ -272,7 +292,7 @@ const resetUserPassword = asyncHandler(async (req, res) => {
           email: updatedUser.email,
           name: updatedUser.name,
           avatar: updatedUser.avatar,
-          isAdmin: updatedUser.isAdmin
+          isAdmin: updatedUser.isAdmin,
         });
       } else {
         res.status(401);
@@ -308,7 +328,7 @@ const confirmUser = asyncHandler(async (req, res) => {
       avatar: updatedUser.avatar,
       isConfirmed: updatedUser.isConfirmed,
       accessToken: generateToken(user._id, "access"),
-      refreshToken: foundToken
+      refreshToken: foundToken,
     });
   } catch (error) {
     console.log(error);
@@ -343,7 +363,7 @@ const getAccessToken = asyncHandler(async (req, res) => {
       } else {
         return res.json({
           success: false,
-          message: "Invalid refresh token"
+          message: "Invalid refresh token",
         });
       }
     }
@@ -363,7 +383,7 @@ const getUserData = asyncHandler(async (req, res) => {
       name: user.name,
       avatar: user.avatar,
       isAdmin: user.isAdmin,
-      isConfirmed: user.isConfirmed
+      isConfirmed: user.isConfirmed,
     });
   } else {
     res.status(400);
@@ -382,7 +402,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       email: user.email,
       avatar: user.avatar,
       name: user.name,
-      isAdmin: user.isAdmin
+      isAdmin: user.isAdmin,
     });
   } else {
     res.status(400);
@@ -420,14 +440,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       profilephoto: updatedUser.profilephoto,
       isAdmin: updatedUser.isAdmin,
-      isConfirmed: updatedUser.isConfirmed
+      isConfirmed: updatedUser.isConfirmed,
     };
 
     if (updatedUser) {
       if (!isSocialLogin) {
         const refreshToken = generateToken(updatedUser._id, "refresh");
         const existingToken = await Token.findOne({
-          email: updatedUser.email
+          email: updatedUser.email,
         });
         // store a new refresh token for this email
         if (existingToken) {
@@ -436,14 +456,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         } else {
           Token.create({
             user: updatedUser._id,
-            token: refreshToken
+            token: refreshToken,
           });
         }
         // add these two token to the response
         updatedUserObj = {
           ...updatedUserObj,
           accessToken: generateToken(updatedUser._id, "access"),
-          refreshToken
+          refreshToken,
         };
       }
       res.json(updatedUserObj);
@@ -468,5 +488,5 @@ export {
   getAllUsers,
   deleteUser,
   getUserById,
-  updateUser
+  updateUser,
 };

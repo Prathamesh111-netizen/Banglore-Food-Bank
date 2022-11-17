@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "Code for Good 2022: Banglore food bank Challenge Winners",
 	"main": "server.js",
-	"type": "module",
 	"scripts": {
 		"start": "nodemon server.js"
 	},
@@ -21,6 +20,7 @@
 		"cookie-session": "^1.4.0",
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
+		"esm": "^3.2.25",
 		"express": "^4.18.2",
 		"express-async-handler": "^1.1.4",
 		"express-session": "^1.17.2",

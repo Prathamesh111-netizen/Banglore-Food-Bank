@@ -18,22 +18,22 @@ services:
       - NODE_ENV=development
     networks:
       - app-network
-  client:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    image: myapp-client
-    container_name: myapp-react-client
-    command: npm start
-    volumes:
-      - ./frontend/:/usr/app
-      - /usr/app/node_modules
-    depends_on:
-      - server
-    ports:
-      - "3000:3000"
-    networks:
-      - app-network
+  # client:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   image: myapp-client
+  #   container_name: myapp-react-client
+  #   command: npm start
+  #   volumes:
+  #     - ./frontend/:/usr/app
+  #     - /usr/app/node_modules
+  #   depends_on:
+  #     - server
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - app-network
 
 networks:
     app-network:

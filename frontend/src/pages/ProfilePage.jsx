@@ -476,6 +476,7 @@ const ProfilePage = ({ history }) => {
           variant="info"
           size="lg"
           onClick={() => downloadExcel(orders)}
+          id="downloadasexcel"
         >
           Download As Excel
         </Button>

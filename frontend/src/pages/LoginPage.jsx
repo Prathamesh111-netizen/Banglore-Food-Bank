@@ -310,6 +310,7 @@ const LoginPage = ({ location, history }) => {
 											Forgot Password?
 										</Button>
 										<Button
+											id = "test-login"
 											type='submit'
 											className='ms-auto'
 											style={{

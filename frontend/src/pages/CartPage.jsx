@@ -365,6 +365,7 @@ const CartPage = ({ match, location, history }) => {
 									size="lg"
 									disabled={!cartItems.length}
 									onClick={displayRazorpay}
+									id="proceedtodonation"
 								>
 									Proceed to donation
 								</Button>

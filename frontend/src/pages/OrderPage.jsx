@@ -300,6 +300,7 @@ const OrderPage = ({ match, history }) => {
 														variant="info"
 														size="lg"
 														onClick={DownloadCertificate}
+														id="gethonourcodecert"
 													>
 														Get Honour Code Certificate
 													</Button>
@@ -311,6 +312,7 @@ const OrderPage = ({ match, history }) => {
 															type="button"
 															variant="info"
 															size="lg"
+															id="downloadhonourcodecert"
 														>
 															Download Honour Code Certificate
 														</Button>

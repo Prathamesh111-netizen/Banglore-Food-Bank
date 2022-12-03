@@ -243,6 +243,7 @@ const ProductPage = ({ history, match }) => {
 											{
 												'error' in userDetails && <LinkContainer to={`/login`}>
 												<Button
+												id="addtocarttest"
 												onClick={handleAddToCart}
 												type="button"
 												className="btn-block btn-lg">
@@ -252,10 +253,12 @@ const ProductPage = ({ history, match }) => {
 											}
 											{
 												'user' in userDetails && <Button
+												id="addtocarttest"
 												onClick={handleAddToCart}
 												type="button"
 												className="btn-block btn-lg"
 												disabled={product.countInStock <= 0}
+												
 											>
 												Add To Cart
 											</Button>

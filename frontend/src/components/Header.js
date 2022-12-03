@@ -299,7 +299,7 @@ const Header = () => {
                 </NavDropdown>
               </div>
             ) : (
-              <LinkContainer to="/login" variant="primary">
+              <LinkContainer to="/login" variant="primary" id="test-sign-in">
                 <Nav.Link>
                   <i className="fas fa-user navbar-icons" /> Sign In
                 </Nav.Link>

@@ -81,15 +81,20 @@ function DividerStack() {
 
 export default function AboutUs() {
   const [news, setNews] = useState([])
+  
+
   useEffect(() => {
+
     var config = {
       method: 'get',
       url: process.env.REACT_APP_NEWS_API,
       headers: {},
     }
+    console.log(process.env.REACT_APP_NEWS_API)
 
     axios(config)
       .then(function (response) {
+        console.log(response)
         const arr = []
         const articles = response.data.articles
         for (let x = 0; x < 3; x++)

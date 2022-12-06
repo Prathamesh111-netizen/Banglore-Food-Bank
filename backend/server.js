@@ -90,6 +90,7 @@ app.post("/api/upload", async (req, res, next) => {
     next(error);
   }
 });
+
 app.post("/api/verification", (req, res) => {
   const secret = process.env.secret;
 

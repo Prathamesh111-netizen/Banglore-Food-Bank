@@ -42,20 +42,24 @@ def get_database():
 
 if __name__ == "__main__":
     url = "https://www.ndtv.com/topic/food-donation"
+    print("url = ", url)
     soup = html_code(url)
+    print("html processed")
     cus_res = cus_data(soup)
-    
+    print("formatted html code")
     dbname = get_database()
     craw = dbname["craw"]
-    
+
+    print("storing data items into mongoDB database")
+
     for x in cus_res:
         all = x.split("|")
         obj = {
-            "title": all[0],
-            "news": all[len(all) - 1]
+            "title": ' '.join(all[0].split()),
+            "news": ' '.join(all[len(all) - 1].split())
         }
-        print(obj)
+        print()
+        for y in obj:
+            print(y, ':', obj[y])
+        print()
         craw.insert_one(obj)
-
-
-

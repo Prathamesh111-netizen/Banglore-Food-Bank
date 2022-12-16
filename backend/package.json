@@ -39,7 +39,6 @@
 		"passport-linkedin-oauth2": "^2.0.0",
 		"passport-twitter": "^0.1.5",
 		"pdfkit": "^0.13.0",
-		"puppeteer": "^19.3.0",
 		"razorpay": "^2.8.2",
 		"request": "^2.88.2",
 		"shortid": "^2.2.16",

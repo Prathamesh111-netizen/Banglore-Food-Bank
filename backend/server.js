@@ -8,6 +8,8 @@ import shortid from "shortid";
 import Razorpay from "razorpay";
 import campaignRoutes from "./routes/campaignRoutes.js";
 import fs from "fs";
+import https from "https";
+
 // middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
@@ -169,8 +171,20 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-);
+https
+  .createServer(
+    // Provide the private and public key to the server by reading each
+    // file's content with the readFileSync() method.
+    {
+      key: fs.readFileSync("key.pem"),
+      cert: fs.readFileSync("cert.pem"),
+    },
+    app
+  )
+  .listen(PORT, () =>
+    console.log(
+      `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    )
+  );
 
 // web crawlers

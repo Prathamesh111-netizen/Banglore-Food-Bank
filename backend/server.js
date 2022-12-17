@@ -171,17 +171,17 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-https
-  .createServer(
-    // Provide the private and public key to the server by reading each
-    // file's content with the readFileSync() method.
-    {
-      key: fs.readFileSync("key.pem"),
-      cert: fs.readFileSync("cert.pem"),
-    },
-    app
-  )
-  .listen(PORT, () =>
+// https
+//   .createServer(
+//     // Provide the private and public key to the server by reading each
+//     // file's content with the readFileSync() method.
+//     {
+//       key: fs.readFileSync("key.pem"),
+//       cert: fs.readFileSync("cert.pem"),
+//     },
+//     app
+//   )
+  app.listen(PORT, () =>
     console.log(
       `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
     )

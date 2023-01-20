@@ -1,23 +1,34 @@
 version: '3.7'
 
 services:
-  # server:
-  #   build:
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   image: myapp-server
-  #   container_name: myapp-node-server
-  #   command: npm start
-  #   volumes:
-  #     - ./backend/:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #   ports:
-  #     - "2525:2525"
-  #   env_file: ./backend/.env
+  # mongodb_container:
+  #   image: mongo:latest
   #   environment:
-  #     - NODE_ENV=development
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: password
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - mongodb_data_container:/data/db
   #   networks:
   #     - app-network
+  server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: myapp-server
+    container_name: myapp-node-server
+    command: npm start
+    volumes:
+      - ./backend/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "2525:2525"
+    env_file: ./backend/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
   client:
     build:
       context: ./frontend
@@ -28,8 +39,8 @@ services:
     volumes:
       - ./frontend/:/usr/app
       - /usr/app/node_modules
-    # depends_on:
-    #   - server
+    depends_on:
+      - server
     ports:
       - "3000:3000"
     networks:

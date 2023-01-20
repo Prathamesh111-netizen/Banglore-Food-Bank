@@ -8,7 +8,6 @@ import shortid from "shortid";
 import Razorpay from "razorpay";
 import campaignRoutes from "./routes/campaignRoutes.js";
 import fs from "fs";
-import https from "https";
 
 // middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
@@ -35,6 +34,12 @@ const razorpay = new Razorpay({
 
 app.use(express.json({ limit: "5mb" })); // middleware to use req.body
 app.use(cors()); // to avoid CORS errors
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get("/", (req, res) => {
   res.json({ status: "ok" });

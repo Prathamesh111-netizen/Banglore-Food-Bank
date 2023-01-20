@@ -9,7 +9,12 @@ JPMC Code for Good Winner team 39 : Past Glory
 
 
 ## ⚠️ The issue
-Hunger is not a natural disaster, it is a man made one to a large extent. 20+ lakhs of people die in India every year because of hunger. Hence, it is our duty to eradicate it. Bangalore Food Bank works in this direction. The problems faced by them are the lack of awareness and not easier ways to donate in a nutshell. So, we worked to create a solution towards this.
+    The Project was created as a part of JP Morgan Chase & Co. Code for food Event. Bangalore food bank till date has served over 54 mn feeds, distributed over 250 tonnes of food, and touched lives of over 3.6 lakh beneficiaries.
+
+    The goal of this solution is to use technology to increase awareness about the issue of hunger in India and to make it easier for individuals and organizations to donate to the Bangalore Food Bank and other organizations working to combat hunger. By using QR codes, social media promotion, and email verification sign-up, we hope to make it more convenient for people to get involved and make a difference.To expand into accepting international donations,we have set up an online donation platform that can accept payments in multiple currencies. This would allow individuals and organizations from around the world to make donations to the Bangalore Food Bank and its programs. Additionally, it may be efficient to use our system in place for tracking donations and sending updates to donors, regardless of their location.
+    
+    Additionally, having a strong online presence, including a website and social media platforms, that is easily accessible in multiple languages can also help to attract international donors.
+
 
 ## ✨ Our Magic solution
 1. We have created a feature where individuals or organizations can start their own campaigns.

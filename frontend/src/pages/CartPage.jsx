@@ -15,6 +15,7 @@ import Message from "../components/Message";
 import { refreshLogin, getUserDetails } from "../actions/userActions";
 import { addItem, removeItem } from "../actions/cartActions";
 import { createOrder } from "../actions/orderActions";
+import axios from "axios";
 
 const CartPage = ({ match, location, history }) => {
 	const [totalItems, setTotalItems] = useState(0);
@@ -115,15 +116,15 @@ const CartPage = ({ match, location, history }) => {
 	
 		console.log("amount", amount);
 
-		const data = await fetch(
-			`${process.env.REACT_APP_BACKEND_SERVER}/api/razorpay?amount=${amount}&currency=${"INR"}`,
-			{
-				method: "POST"
-			}
-		).then((t) => t.json());
-
-		console.log("data", data);
-
+		// const data = await fetch(
+		// 	,
+		// 	{
+		// 		method: "POST"
+		// 	}
+		// ).then((t) => t.json());
+		var data;
+		await axios.post(`${process.env.REACT_APP_BACKEND_SERVER}/api/razorpay?amount=${amount}&currency=${"INR"}`, {}).then(res=>{ data = res.data});
+		console.log("data", data)
 		const options = {
 			key: __DEV__ ? "rzp_test_6MRZgh5jRieE5u" : "rzp_test_6MRZgh5jRieE5u",
 			currency: data.currency,

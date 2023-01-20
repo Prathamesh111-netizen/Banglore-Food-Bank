@@ -20,8 +20,8 @@ function DividerStack() {
           <CardMedia
             component="img"
             sx={{ height: 200 }}
-            image="https://media-exp1.licdn.com/dms/image/C4D03AQH3irSDU2gxig/profile-displayphoto-shrink_800_800/0/1653633896844?e=1671062400&v=beta&t=zPk3WOOXICCkaw1E3zsOw-qJFT--WHlWqmCme2Nj2gA"
-            alt="Live from space album cover"
+            image="./prathamesh.jpeg"
+            alt="Martian"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flex: '1 0 auto' }}>
@@ -42,8 +42,8 @@ function DividerStack() {
           <CardMedia
             component="img"
             sx={{ height: 200 }}
-            image="https://media-exp1.licdn.com/dms/image/C5603AQE4E9ooJ1ICSA/profile-displayphoto-shrink_800_800/0/1638622172816?e=1671062400&v=beta&t=N5IAnA2_vvAPliIDfMHlqPFpjoR6gqcGmUATzwlmVn8"
-            alt="Live from space album cover"
+            image="./harsh.jpeg"
+            alt="Wonder Boy"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flex: '1 0 auto' }}>
@@ -61,7 +61,7 @@ function DividerStack() {
             component="img"
             sx={{ height: 200 }}
             image="/yash.jpg"
-            alt="Live from space album cover"
+            alt="Dude"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flex: '1 0 auto' }}>

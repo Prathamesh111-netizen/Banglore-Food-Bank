@@ -514,7 +514,7 @@ const ProfilePage = ({ history }) => {
                         padding: '0',
                       }}
                     >
-                      <td>{getDateString(order.createdAt)}</td>
+                      <td>{(order.createdAt)}</td>
                       <td>
                         {order.totalPrice.toLocaleString('en-IN', {
                           maximumFractionDigits: 0,
@@ -541,7 +541,7 @@ const ProfilePage = ({ history }) => {
                       </td>
                       <td>
                         {order.isDelivered ? (
-                          getDateString(order.deliveredAt)
+                          (order.deliveredAt)
                         ) : (
                           <i
                             className="fas fa-times"

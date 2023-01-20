@@ -102,7 +102,7 @@ const ProductListPage = ({ history, match }) => {
                         currency: 'INR',
                       })}
                     </td>
-                    <td>{getDateString(order.createdAt)}</td>
+                    <td>{(order.createdAt)}</td>
                     <td>
                       {order.isPaid ? (
                         <i

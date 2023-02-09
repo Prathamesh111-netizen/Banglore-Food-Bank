@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  bgbankserver:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: bgbankserver
+    container_name: bgbankserver
+    command: npm start
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "2525:2525"
+    env_file: ./server/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+  bgbankclient:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: bgbankclient
+    container_name: bgbankclient
+    command: npm start
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - bgbankserver
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
+

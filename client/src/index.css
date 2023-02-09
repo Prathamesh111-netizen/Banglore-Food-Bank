@@ -1,0 +1,80 @@
+main {
+    min-height: 85vh;
+}
+
+.partnrs{ display: inline-block; width: 100%; padding: 70px 0 60px 0; text-align: center; background:#f5f5f5;}
+.partnrs .container{max-width: 1000px;}
+.partnrs h3{ font-size: 32px; font-weight: 600; color: #000000;}
+.partnrs p{ font-size: 17px;color: #1c1a1b; margin: 40px 0; line-height: 25px;}
+.partnrs ul{ display: inline-block; width: 100%;margin-bottom: 30px;}
+.partnrs ul li{ display: inline-block; margin: 0px 1%;}
+
+
+.misandvis{ float: left; width: 100%; padding: 30px 0;}
+/*.misandvis .container{width: calc(100% + 5px);}*/
+.misandvis .div_visdetails{ width:calc(50% - 10px); margin: 0px 5px; float: left;}
+.misandvis .div_visdetails img{ width: 100%;}
+.misandvis .div_visdetails h4{ width: 100%; font-weight: 800; font-size: 32px; color: #eb5310; margin: 35px 0; text-transform: uppercase;}
+.misandvis .div_visdetails p{ color: #1c1a1b; font-size: 16px; line-height: 25px; max-width:85%;}
+
+.misandvis .div_visdetails ul{
+	list-style: none;
+	margin: 0 0 30px 0;
+	padding: 0;
+}
+
+.misandvis .div_visdetails ul li{
+	color: #1c1a1b; 
+	font-size: 16px; 
+	line-height: 25px;
+	font-weight: 500;
+}
+
+.misandvis .div_visdetails ul li i{
+	color: #eb5310;
+    float: left;
+    margin-right: 7px;
+    height: 30px;
+    line-height: 27px;
+}	
+
+
+h4 {
+    margin: 0.8rem 0;
+}
+
+h1 {
+    padding: 1rem 0;
+    font-size: 1.8rem;
+}
+
+h2 {
+    padding: 0.2rem 0;
+    font-size: 1.4rem;
+}
+
+table td {
+    vertical-align: middle;
+}
+
+.alert-custom {
+    transition: all 0.4s ease-in-out;
+}
+
+.rating span {
+    margin: 0.1rem;
+}
+
+button.cart-delete-btn {
+    margin-left: 1em;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 430px) {
+    button.remember-password {
+        font-size: 0.8rem;
+    }
+}

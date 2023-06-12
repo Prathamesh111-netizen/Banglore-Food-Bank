@@ -14,9 +14,10 @@ jobs:
       - run: |
           curl https://get.okteto.com -sSfL | sh
           okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
-          okteto version
-          okteto context list
-          okteto deploy --build
+          cd ../client && okteto deploy --build
+          cd server && okteto deploy --build
+          
+          
     
   
   

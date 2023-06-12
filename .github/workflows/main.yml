@@ -1,0 +1,19 @@
+name: Deployment workflow
+  
+on:
+  push: 
+    branches: 
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@2
+      - uses: actions/setup-node@v3
+      - run: |
+          node -v
+        
+    
+  
+  

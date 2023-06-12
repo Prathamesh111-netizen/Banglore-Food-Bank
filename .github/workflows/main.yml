@@ -10,12 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
       - run: |
           curl https://get.okteto.com -sSfL | sh
           okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
-          cd ../client && okteto deploy --build
-          cd server && okteto deploy --build
+          
+          cd client
+          echo "${{ secrets.CLIENT_ENV_FILE }}"  .env
+          okteto deploy --build
+          
+          cd ../server
+          echo "${{ secrets.SERVER_ENV_FILE }}"  .env
+          okteto deploy --build
           
           
     

@@ -20,6 +20,7 @@ jobs:
           
           cd ../server
           echo "${{ secrets.SERVER_ENV_FILE }}"  .env
+          cat .env
           okteto deploy --build
           
           

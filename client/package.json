@@ -2,6 +2,7 @@
 	"name": "banglorefoodbank",
 	"version": "1.0.0",
 	"description": "Banglore food bank Challenge",
+	"proxy": "https://bgbankserver-prathamesh111-netizen.cloud.okteto.net",
 	"dependencies": {
 		"@alan-ai/alan-sdk-web": "^1.8.34",
 		"@emotion/react": "^11.9.3",

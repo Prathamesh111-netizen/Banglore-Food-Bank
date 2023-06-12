@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  bgbank:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bgbank
+    container_name: bgbank
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "2525:2525"
+
+

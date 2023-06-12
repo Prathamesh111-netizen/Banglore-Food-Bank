@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  bgbankclient:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bgbankclient
+    container_name: bgbankclient
+    command: npm start
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+

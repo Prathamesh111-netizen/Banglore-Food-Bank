@@ -15,7 +15,9 @@ jobs:
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
       - run : |
+          curl https://get.okteto.com -sSfL | sh
           okteto version
+          okteto context
           node -v
         
     

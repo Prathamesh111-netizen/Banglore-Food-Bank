@@ -14,8 +14,11 @@ jobs:
 
           cd server
           echo "${{ secrets.SERVER_ENV_FILE }}" > .env
-          ls
-          cat .env
+          okteto deploy --build
+          
+          cd ../client
+          echo "${{ secrets.CLIENT_ENV_FILE }}" > .env
+          okteto deploy --build
     
           
           

@@ -16,6 +16,7 @@ jobs:
           okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
           
           cd client
+          npm install --force
           npm run build
           
           cd ../server

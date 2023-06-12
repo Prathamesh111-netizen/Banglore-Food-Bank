@@ -13,7 +13,7 @@ jobs:
       - run: |
 
           cd server
-          echo "${{ secrets.SERVER_ENV_FILE }}"  .env
+          echo "${{ secrets.SERVER_ENV_FILE }}" > .env
           ls
           cat .env
     

@@ -15,7 +15,7 @@ jobs:
           curl https://get.okteto.com -sSfL | sh
           okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
           okteto version
-          okteto contest list
+          okteto context list
     
   
   

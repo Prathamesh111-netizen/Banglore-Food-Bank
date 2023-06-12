@@ -20,6 +20,7 @@ jobs:
           cd client
           npm install --force
           npm run build
+          mv build ../server
           
           cd ../server
           echo "${{ secrets.SERVER_ENV_FILE }}" > .env

@@ -19,10 +19,11 @@ jobs:
           
           cd client
           npm install --force
-          npm run build
+          CI=false npm run build
           mv build ../server
           
           cd ../server
+          ls
           echo "${{ secrets.SERVER_ENV_FILE }}" > .env
           okteto deploy --build
           

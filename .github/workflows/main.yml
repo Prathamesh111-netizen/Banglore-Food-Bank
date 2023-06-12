@@ -1,0 +1,22 @@
+name: Deployment workflow
+  
+on:
+  push: 
+    branches: 
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: |
+          curl https://get.okteto.com -sSfL | sh
+          okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
+          okteto version
+          okteto context list
+          okteto deploy --build
+    
+  
+  

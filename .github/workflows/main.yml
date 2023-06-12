@@ -16,9 +16,7 @@ jobs:
           okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
           okteto version
           okteto context list
-      - name: Deployment
-        run: |
-          docker --version
+          okteto deploy --build
     
   
   

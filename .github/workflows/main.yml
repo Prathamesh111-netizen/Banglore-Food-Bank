@@ -11,12 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-      - run: |
-          curl https://get.okteto.com -sSfL | sh
-          node -v
+      - uses: okteto/login@latest
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+      - run : |
           okteto version
-          okteto context use https://cloud.okteto.com
-          okteto context list
+          node -v
         
     
   

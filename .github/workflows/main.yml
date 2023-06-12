@@ -11,17 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          curl https://get.okteto.com -sSfL | sh
-          okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
-          
-          cd client
-          echo "${{ secrets.CLIENT_ENV_FILE }}"  .env
-          okteto deploy --build
-          
-          cd ../server
+
+          cd server
           echo "${{ secrets.SERVER_ENV_FILE }}"  .env
+          ls
           cat .env
-          okteto deploy --build
+    
           
           
     

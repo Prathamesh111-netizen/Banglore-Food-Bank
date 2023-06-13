@@ -170,12 +170,12 @@ app.get("/api/verifyac/:userID", async (req, res) => {
 // }
 
 
-// app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
-// app.get('*', function (req, res) {
-//     res.sendFile(path.join(__dirname , 'build', 'index.html'));
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname , 'build', 'index.html'));
     
-// }); 
+}); 
 
 // middleware to act as fallback for all 404 errors
 app.use(notFound);

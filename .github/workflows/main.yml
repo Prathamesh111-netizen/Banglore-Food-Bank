@@ -21,6 +21,7 @@ jobs:
           
           cd client
           npm install --force
+          echo "${{ secrets.CLIENT_ENV_FILE }}" > .env
           CI=false npm run build
           mv build ../server
           

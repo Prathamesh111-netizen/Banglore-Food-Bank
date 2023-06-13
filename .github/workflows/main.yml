@@ -28,7 +28,7 @@ jobs:
           cd ../server
           ls
           echo "${{ secrets.SERVER_ENV_FILE }}" > .env
-          okteto deploy --build --namespace= ${{secrets.OKTETO_CFG_NAMESPACE }}
+          okteto deploy --build --namespace=${{secrets.OKTETO_CFG_NAMESPACE }}
           
         
     

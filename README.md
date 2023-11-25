@@ -1,4 +1,4 @@
-# Created as part of JPMC CFG Challenge 2022
+# Created as part of JPMC CFG Challenge 2022 
 <br/><br/><br/> 
 
 [![image](https://user-images.githubusercontent.com/79742694/182610309-d3d06834-470b-4b16-8dcb-3163f9813719.png)](https://youtu.be/WOmhhXmyG3U)
